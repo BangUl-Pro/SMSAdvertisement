@@ -58,13 +58,15 @@ io.sockets.on('connection', function(socket) {
 	});
 	
 	socket.on('disconnect', function() {
-		mySqlConnection.end(function(err) {
-			if (err) {
-				console.error('mySql 닫기 에러 = ' + err);
-			} else {
-				console.log('mySql 닫기 성공');
-			}
-		});
 		console.log('연결 해제');
 	});
+});
+
+
+mySqlConnection.end(function(err) {
+	if (err) {
+		console.error('mySql 닫기 에러 = ' + err);
+	} else {
+		console.log('mySql 닫기 성공');
+	}
 });
