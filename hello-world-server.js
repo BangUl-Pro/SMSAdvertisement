@@ -45,12 +45,13 @@ mySqlConnection.connect(function(err) {
 	}
 });
 
-final var TABLE_NAME_USER_AUTH = "user_auth";
-final var COL_USER_ID = "user_id";
-final var COL_USER_PW = "user_pw";
-final var COL_USER_MAIL = "user_mail";
-final var COL_USER_NAME = "user_name";
-final var COL_USER_BIRTH = "user_birth";
+var TABLE_NAME_USER_AUTH = "user_auth";
+var COL_USER_ID = "user_id";
+var COL_USER_PW = "user_pw";
+var COL_USER_MAIL = "user_mail";
+var COL_USER_NAME = "user_name";
+var COL_USER_BIRTH = "user_birth";
+
 
 mySqlConnection.query('create table if not exists ' + TABLE_NAME_USER_AUTH +' (' +
 		COL_USER_ID + ' text, ' +
@@ -66,11 +67,11 @@ io.sockets.on('connection', function(socket) {
 	
 	socket.on('insert', function() {
 		var data = {
-				COL_USER_ID : "id",
-				COL_USER_PW : "1234",
-				COL_USER_MAIL : 'mail',
-				COL_USER_NAME : '이동규',
-				COL_USER_BIRTH : 970224
+				'user_id' : "id",
+				'user_pw' : "1234",
+				'user_mail' : 'mail',
+				'user_name' : '이동규',
+				'user_birth' : 970224
 		};
 		mySqlConnection.query("insert into user_auth set ?", data, function(err, rows) {
 			if (err) {
