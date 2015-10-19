@@ -54,7 +54,7 @@ io.sockets.on('connection', function(socket) {
 		var data = {
 				name : "이동규"
 		};
-		mySqlConnection.query("insert into table1 set *", data, function(err, rows) {
+		mySqlConnection.query("insert into table1 set ?", data, function(err, rows) {
 			if (err) {
 				console.error('insert 에러 = ' + err);
 			} else {
