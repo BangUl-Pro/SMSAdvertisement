@@ -45,6 +45,12 @@ mySqlConnection.connect(function(err) {
 	}
 });
 
+mySqlConnection.query('create table user_auth (' +
+		'user_id text, ' +
+		'user_pw text, ' +
+		'user_mail text, ' +
+		'user_birth int);');
+
 io.sockets.on('connection', function(socket) {
 	socket.on('hi', function(data) {
 		console.log('gd');
@@ -54,7 +60,7 @@ io.sockets.on('connection', function(socket) {
 		var data = {
 				name : "이동규"
 		};
-		mySqlConnection.query("insert into table1 set ?", data, function(err, rows) {
+		mySqlConnection.query("insert into user_auth set ?", data, function(err, rows) {
 			if (err) {
 				console.error('insert 에러 = ' + err);
 			} else {
@@ -65,7 +71,7 @@ io.sockets.on('connection', function(socket) {
 	
 	
 	socket.on('select', function() {
-		mySqlConnection.query("select * from table1", function(err, rows) {
+		mySqlConnection.query("select * from user_auth", function(err, rows) {
 			if (err) {
 				console.error('select 에러 = ' + err);
 			} else {
