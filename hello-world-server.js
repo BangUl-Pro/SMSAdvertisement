@@ -112,8 +112,8 @@ io.sockets.on('connection', function(socket) {
 		var id = data.id;
 		var pw = data.pw;
 		console.log('로그인 요청');
-		console.log('id = ' + id);
-		console.log('pw = ' + pw);
+		console.info('id = ' + id);
+		console.info('pw = ' + pw);
 		
 		mySqlConnection.query("select user_id from user_auth where user_id = '" + id + "' and user_pw = '" + pw + "';", function(err, result) {
 			if (err) {
@@ -122,12 +122,20 @@ io.sockets.on('connection', function(socket) {
 				});
 				console.error('로그인  DB 에러 = ' + err);
 			} else {
-				if (result == null) {
-					console.log('null');
-				} else if (result) {
-					console.log('unde');
+				if (result[0].user_id) {
+					// 일치하는 아이디가 있다면
+					console.log('로그인 성공');
+					socket.emit('login', {
+						'code':200,
+						'id':result[0].user_id
+					});
+				} else {
+					// 일치하는 아이디가 없다면
+					console.log('일치하는 아이디가 없음');
+					socket.emit('login', {
+						'code':302
+					});
 				}
-				console.log('로그인 결과 값 = ' + result[0].user_id);
 			}
 		});
 	})
