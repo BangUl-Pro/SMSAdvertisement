@@ -45,20 +45,12 @@ mySqlConnection.connect(function(err) {
 	}
 });
 
-var TABLE_NAME_USER_AUTH = "user_auth";
-var COL_USER_ID = "user_id";
-var COL_USER_PW = "user_pw";
-var COL_USER_MAIL = "user_mail";
-var COL_USER_NAME = "user_name";
-var COL_USER_BIRTH = "user_birth";
-
-
-mySqlConnection.query('create table if not exists ' + TABLE_NAME_USER_AUTH +' (' +
-		COL_USER_ID + ' text, ' +
-		COL_USER_PW + ' text, ' +
-		COL_USER_MAIL + ' text, ' +
-		COL_USER_NAME + ' text, ' +
-		COL_USER_BIRTH + ' int);');
+mySqlConnection.query('create table if not exists user_auth (' +
+		'user_id text, ' +
+		'user_pw text, ' +
+		'user_mail text, ' +
+		'user_name text, ' +
+		'user_birth int);');
 
 io.sockets.on('connection', function(socket) {
 	socket.on('hi', function(data) {
