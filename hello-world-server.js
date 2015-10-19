@@ -47,6 +47,10 @@ mySqlConnection.connect(function(err) {
 });
 
 io.sockets.on('connection', function(socket) {
+	socket.on('hi', function(data) {
+		console.log('gd');
+	});
+	
 	socket.on('connect', function(data) {
 		console.log('연결');
 	});
