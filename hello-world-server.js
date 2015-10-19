@@ -51,7 +51,7 @@ io.sockets.on('connection', function(socket) {
 	});
 	
 	socket.on('insert', function() {
-		var data = ['id', '1234', 'mail', 'lee', 970224];
+		mySqlConnection.query('use user_auth');
 		mySqlConnection.query('insert into user_auth (user_id, user_pw, user_mail, user_name, user_birth) values ("id","1234","mail","lee",970224);', function(err, rows) {
 			if (err) {
 				console.error('insert 에러 = ' + err);
