@@ -122,6 +122,11 @@ io.sockets.on('connection', function(socket) {
 				});
 				console.error('로그인  DB 에러 = ' + err);
 			} else {
+				if (result == null) {
+					console.log('null');
+				} else if (result) {
+					console.log('unde');
+				}
 				console.log('로그인 결과 값 = ' + result);
 			}
 		});
