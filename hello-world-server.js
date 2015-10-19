@@ -42,7 +42,9 @@ var mySqlConnection = mySql.createConnection(process.env.JAWSDB_URL);
 
 mySqlConnection.connect(function(err) {
 	if(err) {
-		console.log('에러 = ' + err);
+		console.error('mySql 연결 에러 = ' + err);
+	} else {
+		console.log('mySql 연결 성공');
 	}
 });
 
@@ -58,7 +60,9 @@ io.sockets.on('connection', function(socket) {
 	socket.on('disconnect', function() {
 		mySqlConnection.end(function(err) {
 			if (err) {
-				console.log('mySql 닫기 에러 = ' + err);
+				console.error('mySql 닫기 에러 = ' + err);
+			} else {
+				console.log('mySql 닫기 성공');
 			}
 		});
 		console.log('연결 해제');
