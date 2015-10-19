@@ -107,4 +107,20 @@ io.sockets.on('connection', function(socket) {
 		pool.releaseConnection(mySqlConnection);
 		console.log('연결 해제');
 	});
+	
+	socket.on('login', function(data){
+		var id = data.id;
+		var pw = data.pw;
+		
+		mySqlConnection.query('select id from user_auth where id = "' + id + '", pw = "' + pw + '";', function(err, result) {
+			if (err) {
+				socket.emit('login', {
+					'code':301
+				});
+				console.error('로그인  DB 에러 = ' + err);
+			} else {
+				console.log('로그인 결과 값 = ' + result);
+			}
+		});
+	})
 });
