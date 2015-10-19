@@ -37,13 +37,13 @@ var mySqlConnection = mySql.createConnection({
 	user : mySqlUserName,
 	password : mySqlPw,
 	database : mySqlUrl
-}, function(err) {
+});
+
+mySqlConnection.connect(function(err) {
 	if(err) {
 		console.log('에러 = ' + err);
 	}
 });
-
-mySqlConnection.connect();
 
 io.sockets.on('connection', function(socket) {
 	socket.on('connect', function(data) {
