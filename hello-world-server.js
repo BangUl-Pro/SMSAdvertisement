@@ -49,6 +49,7 @@ mySqlConnection.query('create table user_auth (' +
 		'user_id text, ' +
 		'user_pw text, ' +
 		'user_mail text, ' +
+		'user_name text, ' +
 		'user_birth int);');
 
 io.sockets.on('connection', function(socket) {
@@ -58,7 +59,11 @@ io.sockets.on('connection', function(socket) {
 	
 	socket.on('insert', function() {
 		var data = {
-				name : "이동규"
+				'user_id' : "id",
+				'user_pw' : "1234",
+				'user_mail' : 'mail',
+				'user_name' : '이동규',
+				'user_birth' : 970224
 		};
 		mySqlConnection.query("insert into user_auth set ?", data, function(err, rows) {
 			if (err) {
