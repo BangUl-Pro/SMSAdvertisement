@@ -32,6 +32,13 @@ var mySqlPw = 'ioz8fh0huec5hy0j';
 var mySqlPort = 3306;
 var mySql = require('mysql');
 var mySqlConnection = mySql.createConnection(process.env.JAWSDB_URL || mySqlUrl);
+var mySqlConnection = mySql.createConnection({
+	port : mySqlPort,
+	user : mySqlUserName,
+	password : mySqlPw,
+	database : mySqlUrl
+});
+
 mySqlConnection.connect();
 
 io.sockets.on('connection', function(socket) {
