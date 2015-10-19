@@ -111,6 +111,9 @@ io.sockets.on('connection', function(socket) {
 	socket.on('login', function(data){
 		var id = data.id;
 		var pw = data.pw;
+		console.log('로그인 요청');
+		console.log('id = ' + id);
+		console.log('pw = ' + pw);
 		
 		mySqlConnection.query("select id from user_auth where user_id = '" + id + "' and user_pw = '" + pw + "';", function(err, result) {
 			if (err) {
