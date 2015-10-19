@@ -51,9 +51,12 @@ io.sockets.on('connection', function(socket) {
 	});
 	
 	socket.on('insert', function() {
-		mySqlConnection.query("select * from table1", function(err, rows) {
+		var data = {
+				name : "이동규"
+		};
+		mySqlConnection.query("insert into table1 set *", data, function(err, rows) {
 			if (err) {
-				console.error('select 에러 = ' + err);
+				console.error('insert 에러 = ' + err);
 			} else {
 				console.log(rows);
 			}
