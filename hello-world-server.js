@@ -12,7 +12,7 @@ app.get('/', function (req, res) {
 
 //몽고디비
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://username:12345678@ds041144.mongolab.com:41144/heroku_ncdrcmlf');
+mongoose.connect('mongodb://username:12345678@ds041154.mongolab.com:41154/heroku_s264w1vj');
 var ObjectId = mongoose.Schema.ObjectId;
 
 var errSchema = mongoose.Schema({
@@ -26,9 +26,10 @@ var errModel = mongoose.model('err', errSchema);
 
 
 //mySQL
-var mySqlUrl = 'mysql://q94j7nr8jh8yuyuu:ioz8fh0huec5hy0j@jw0ch9vofhcajqg7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/djxwafbetlgttnhj';
-var mySqlUserName = 'q94j7nr8jh8yuyuu';
-var mySqlPw = 'ioz8fh0huec5hy0j';
+var mySqlUrl = 'mysql://vw3vn7zlemz835me:zupct54e81evwokd@jw0ch9vofhcajqg7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/eooioxp79le8d0gp';
+var mySqlHost = 'jw0ch9vofhcajqg7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com';
+var mySqlUserName = 'vw3vn7zlemz835me';
+var mySqlPw = 'zupct54e81evwokd';
 var mySqlPort = 3306;
 var mySql = require('mysql');
 var mySqlConnection = mySql.createConnection(process.env.JAWSDB_URL || mySqlUrl);
