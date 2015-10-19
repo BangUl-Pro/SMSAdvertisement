@@ -33,6 +33,9 @@ var mySqlPw = 'zupct54e81evwokd';
 var mySqlPort = 3306;
 var mySql = require('mysql');
 var mySqlConnection = mySql.createConnection(process.env.JAWSDB_URL); 
+var pool = mySql.createPool({
+	connectionLimit : 100
+});
 
 mySqlConnection.connect(function(err) {
 	if(err) {
@@ -52,6 +55,7 @@ io.sockets.on('connection', function(socket) {
 	});
 	
 	socket.on('disconnect', function() {
+		pool.releaseConnection(mySqlConnection);
 		mySqlConnection.releaseConnection();
 		console.log('연결 해제');
 	});
