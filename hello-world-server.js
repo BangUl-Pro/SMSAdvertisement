@@ -135,7 +135,7 @@ io.sockets.on('connection', function(socket) {
 						'code':200,
 						'id':result[0].user_id
 					});
-				}
+				} 
 			}
 		});
 	})
