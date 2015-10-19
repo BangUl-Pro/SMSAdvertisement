@@ -73,7 +73,7 @@ io.sockets.on('connection', function(socket) {
 				'user_name' : '이동규',
 				'user_birth' : 970224
 		};
-		mySqlConnection.query("insert into user_auth set ?", data, function(err, rows) {
+		mySqlConnection.query("insert into user_auth values ?", data, function(err, rows) {
 			if (err) {
 				console.error('insert 에러 = ' + err);
 			} else {
