@@ -33,12 +33,6 @@ var mySqlPw = 'zupct54e81evwokd';
 var mySqlPort = 3306;
 var mySql = require('mysql');
 var mySqlConnection = mySql.createConnection(process.env.JAWSDB_URL); 
-//var mySqlConnection = mySql.createConnection({
-//	port : mySqlPort,
-//	user : mySqlUserName,
-//	password : mySqlPw,
-//	database : mySqlUrl
-//});
 
 mySqlConnection.connect(function(err) {
 	if(err) {
@@ -53,20 +47,12 @@ io.sockets.on('connection', function(socket) {
 		console.log('gd');
 	});
 	
-	socket.on('connect', function() {
+	socket.on('connection', function() {
 		console.log('연결');
 	});
 	
 	socket.on('disconnect', function() {
+		mySqlConnection.releaseConnection();
 		console.log('연결 해제');
 	});
-});
-
-
-mySqlConnection.end(function(err) {
-	if (err) {
-		console.error('mySql 닫기 에러 = ' + err);
-	} else {
-		console.log('mySql 닫기 성공');
-	}
 });
