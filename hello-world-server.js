@@ -51,7 +51,6 @@ io.sockets.on('connection', function(socket) {
 	});
 	
 	socket.on('insert', function() {
-		mySqlConnection.query('use mysql://vw3vn7zlemz835me:zupct54e81evwokd@jw0ch9vofhcajqg7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/eooioxp79le8d0gp');
 		mySqlConnection.query('insert into user_auth (user_id, user_pw, user_mail, user_name, user_birth) values ("id","1234","mail","lee",970224);', function(err, rows) {
 			if (err) {
 				console.error('insert 에러 = ' + err);
