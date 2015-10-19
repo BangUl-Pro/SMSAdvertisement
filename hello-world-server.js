@@ -127,7 +127,7 @@ io.sockets.on('connection', function(socket) {
 				} else if (result) {
 					console.log('unde');
 				}
-				console.log('로그인 결과 값 = ' + result);
+				console.log('로그인 결과 값 = ' + result.user_id);
 			}
 		});
 	})
