@@ -37,6 +37,10 @@ var mySqlConnection = mySql.createConnection({
 	user : mySqlUserName,
 	password : mySqlPw,
 	database : mySqlUrl
+}, function(err) {
+	if(err) {
+		console.log('에러 = ' + err);
+	}
 });
 
 mySqlConnection.connect();
