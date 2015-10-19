@@ -70,7 +70,7 @@ io.sockets.on('connection', function(socket) {
 				user_id : "id",
 				user_pw : "1234",
 				user_mail : "mail",
-				user_name : "이동규",
+				user_name : "lee",
 				user_birth : 970224
 		};
 		mySqlConnection.query("insert into user_auth values ?", data, function(err, rows) {
