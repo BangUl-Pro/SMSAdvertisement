@@ -45,13 +45,6 @@ mySqlConnection.connect(function(err) {
 	}
 });
 
-mySqlConnection.query('create table if not exists user_auth (' +
-		'user_id text, ' +
-		'user_pw text, ' +
-		'user_mail text, ' +
-		'user_name text, ' +
-		'user_birth int);');
-
 io.sockets.on('connection', function(socket) {
 	socket.on('hi', function(data) {
 		console.log('gd');
