@@ -51,7 +51,7 @@ io.sockets.on('connection', function(socket) {
 		console.log('gd');
 	});
 	
-	socket.on('connect', function(data) {
+	socket.on('connect', function() {
 		console.log('연결');
 	});
 	
