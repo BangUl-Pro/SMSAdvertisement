@@ -122,7 +122,7 @@ io.sockets.on('connection', function(socket) {
 				});
 				console.error('로그인  DB 에러 = ' + err);
 			} else {
-				if (result[0] || result[0].user_id) {
+				if (!result[0] || result[0].user_id) {
 					// 일치하는 아이디가 있다면
 					console.log('로그인 성공');
 					socket.emit('login', {
