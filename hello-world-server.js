@@ -50,13 +50,33 @@ io.sockets.on('connection', function(socket) {
 		console.log('gd');
 	});
 	
+	socket.on('insert', function() {
+		mySqlConnection.query("select * from table1", function(err, rows) {
+			if (err) {
+				console.error('select 에러 = ' + err);
+			} else {
+				console.log(rows);
+			}
+		});
+	});
+	
+	
+	socket.on('select', function() {
+		mySqlConnection.query("select * from table1", function(err, rows) {
+			if (err) {
+				console.error('select 에러 = ' + err);
+			} else {
+				console.log(rows);
+			}
+		});
+	});
+	
 	socket.on('connection', function() {
 		console.log('연결');
 	});
 	
 	socket.on('disconnect', function() {
 		pool.releaseConnection(mySqlConnection);
-		mySqlConnection.releaseConnection();
 		console.log('연결 해제');
 	});
 });
