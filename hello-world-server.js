@@ -51,7 +51,7 @@ io.sockets.on('connection', function(socket) {
 	});
 	
 	socket.on('create', function() {
-		mySqlConnection.query("create table if not exists user_auth (user_id VARCHAR not null primary key, user_pw VARCHAR, user_mail VARCHAR, user_name VARCHAR, user_birth INT);", function(err, result) {
+		mySqlConnection.query("create table if not exists user_auth (user_id VARCHAR(50) not null primary key, user_pw VARCHAR(20), user_mail VARCHAR(40), user_name VARCHAR(20), user_birth INT);", function(err, result) {
 			if (err) {
 				console.error('테이블 생성 에러 = ' + err);
 			} else {
