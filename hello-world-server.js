@@ -50,8 +50,28 @@ io.sockets.on('connection', function(socket) {
 		console.log('gd');
 	});
 	
+	socket.on('create', function() {
+		mySqlConnection.query("create table if not exists user_auth ('user_id' TEXT, 'user_pw' TEXT, 'user_mail' TEXT, 'user_name' TEXT, 'user_birth' INT);", function(err, result) {
+			if (err) {
+				console.error('테이블 생성 에러 = ' + err);
+			} else {
+				console.log('테이블 생성');
+			}
+		});
+	});
+	
+	socket.on('drop', function() {
+		mySqlConnection.query("drop table user_auth", function(err, result) {
+			if (err) {
+				console.error('테이블 삭제 에러 = ' + err);
+			} else {
+				console.log('테이블 삭제');
+			}
+		});
+	})
+	
 	socket.on('insert', function() {
-		mySqlConnection.query('insert into user_auth (user_id, user_pw, user_mail, user_birth) values ("id","1234","mail",970224);', function(err, rows) {
+		mySqlConnection.query('insert into user_auth (user_id, user_pw, user_mail, user_name, user_birth) values ("id","1234","mail","lee",970224);', function(err, rows) {
 			if (err) {
 				console.error('insert 에러 = ' + err);
 			} else {
