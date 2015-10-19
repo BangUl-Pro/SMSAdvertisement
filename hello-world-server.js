@@ -112,7 +112,7 @@ io.sockets.on('connection', function(socket) {
 		var id = data.id;
 		var pw = data.pw;
 		
-		mySqlConnection.query('select id from user_auth where id = ' + id + ', pw = ' + pw + ';', function(err, result) {
+		mySqlConnection.query('select id from user_auth where user_id = "' + id + '" and user_pw = "' + pw + '";', function(err, result) {
 			if (err) {
 				socket.emit('login', {
 					'code':301
