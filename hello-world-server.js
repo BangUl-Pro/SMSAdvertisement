@@ -108,14 +108,14 @@ io.sockets.on('connection', function(socket) {
 		console.log('연결 해제');
 	});
 	
-	socket.on('login', function(data){
+	socket.on('login', function(data) {
 		var id = data.id;
 		var pw = data.pw;
 		console.log('로그인 요청');
 		console.log('id = ' + id);
 		console.log('pw = ' + pw);
 		
-		mySqlConnection.query("select id from user_auth where user_id = '" + id + "' and user_pw = '" + pw + "';", function(err, result) {
+		mySqlConnection.query("select user_id from user_auth where user_id = '" + id + "' and user_pw = '" + pw + "';", function(err, result) {
 			if (err) {
 				socket.emit('login', {
 					'code':301
