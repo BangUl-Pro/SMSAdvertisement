@@ -32,7 +32,7 @@ var mySqlUserName = 'vw3vn7zlemz835me';
 var mySqlPw = 'zupct54e81evwokd';
 var mySqlPort = 3306;
 var mySql = require('mysql');
-var mySqlConnection = mySql.createConnection(process.env.JAWSDB_URL);
+var mySqlConnection = mySql.createConnection(process.env.JAWSDB_URL); 
 //var mySqlConnection = mySql.createConnection({
 //	port : mySqlPort,
 //	user : mySqlUserName,
