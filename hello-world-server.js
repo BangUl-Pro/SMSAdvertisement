@@ -32,13 +32,13 @@ var mySqlUserName = 'vw3vn7zlemz835me';
 var mySqlPw = 'zupct54e81evwokd';
 var mySqlPort = 3306;
 var mySql = require('mysql');
-//var mySqlConnection = mySql.createConnection(process.env.JAWSDB_URL || mySqlUrl);
-var mySqlConnection = mySql.createConnection({
-	port : mySqlPort,
-	user : mySqlUserName,
-	password : mySqlPw,
-	database : mySqlUrl
-});
+var mySqlConnection = mySql.createConnection(process.env.JAWSDB_URL || mySqlUrl);
+//var mySqlConnection = mySql.createConnection({
+//	port : mySqlPort,
+//	user : mySqlUserName,
+//	password : mySqlPw,
+//	database : mySqlUrl
+//});
 
 mySqlConnection.connect(function(err) {
 	if(err) {
