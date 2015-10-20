@@ -154,7 +154,7 @@ app.post('/findPw', function(req, res) {
 	var mail = req.body.mail;
 	var name = req.body.name;
 	
-	console.log('비밀번호 조');
+	console.log('비밀번호 조회');
 	console.info('id = ' + id);
 	console.info('mail = ' + mail);
 	console.info('name = ' + name);
@@ -192,7 +192,7 @@ app.post('/findPw', function(req, res) {
 
 
 // 비밀번호 변경
-app.post('updatePw', function(req, res) {
+app.post('/updatePw', function(req, res) {
 	var id = req.body.id;
 	var pw = req.body.pw;
 	
