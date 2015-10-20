@@ -11,6 +11,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/signUp', function(req, res) {
+	res.send('signUp!');
 	console.log('\n signUp');
 });
 
