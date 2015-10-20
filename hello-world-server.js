@@ -11,10 +11,11 @@ app.get('/', function (req, res) {
 });
 
 app.post('/signUp', function(req, res) {
-	res.send('signUp!');
+	req.accepts('application/json');
 	console.log('\n req = ' + req.body);
 	console.log('\n body = ' + JSON.stringify(req.body));
 	console.log('\n res = ' + res);
+	res.send('signUp!');
 });
 
 
