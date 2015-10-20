@@ -51,7 +51,7 @@ io.sockets.on('connection', function(socket) {
 	});
 	
 	socket.on('create', function() {
-		mySqlConnection.query("create table if not exists user_auth (user_id VARCHAR(50) not null primary key, user_pw VARCHAR(20), user_mail VARCHAR(40), user_name VARCHAR(20), user_birth INT, user_socket VARCHAR(15));", function(err, result) {
+		mySqlConnection.query("create table if not exists user_auth (user_id VARCHAR(50) not null primary key, user_pw VARCHAR(20), user_mail VARCHAR(50) not null primary key, user_name VARCHAR(20), user_birth INT, user_socket VARCHAR(25));", function(err, result) {
 			if (err) {
 				console.error('테이블 생성 에러 = ' + err);
 			} else {
@@ -161,6 +161,17 @@ io.sockets.on('connection', function(socket) {
 	});
 	
 	
+	// 아이디 찾기
+	socket.on('findId', function(data) {
+		var mail = data.mail;
+		var name = data.name;
+		var birth = data.birth;
+		
+		console.log('아이디 찾기');
+		
+	});
+	
+	
 	// 로그인 
 	socket.on('login', function(data) {
 		var id = data.id;
@@ -183,7 +194,7 @@ io.sockets.on('connection', function(socket) {
 						'code':302
 					});
 				} else {
-					console.log('socket.id = ' + socket.id);
+					console.info('socket.id = ' + socket.id);
 					
 					// 일치하는 아이디가 있다면
 					mySqlConnection.query('update user_auth set user_socket = "' + socket.id + '" where user_id = "' + id + '";', function(err, result) {
