@@ -20,14 +20,14 @@ app.get('/', function (req, res) {
 app.post('/signUp', function(req, res) {
 	req.accepts('application/json');
 	
-	var id = req.body.id;
+	var userid = req.body.id;
 	var pw = req.body.pw;
 	var name = req.body.name;
 	var birth = req.body.birth;
 	var mail = req.body.mail;
 	
 	console.log('회원가입');
-	console.info('id = ' + id);
+	console.info('id = ' + userid);
 	console.info('pw = ' + pw);
 	console.info('name = ' + name);
 	console.info('mail = ' + mail);
