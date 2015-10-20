@@ -13,7 +13,7 @@ app.get('/', function (req, res) {
 app.post('/signUp', function(req, res) {
 	req.accepts('application/json');
 	console.log('\n req = ' + req.input);
-	console.log('\n body = ' + JSON.stringify(req.input));
+	console.log('\n body = ' + JSON.stringify(req));
 	console.log('\n res = ' + res);
 	res.send('signUp!');
 });
