@@ -213,12 +213,6 @@ app.post('/updatePw', function(req, res) {
 				res.send({
 					'code':316
 				})
-			} else if (!result[0]) {
-				// 값이 없을 때
-				console.error('일치하는 아이디 없음');
-				res.send({
-					'code':317
-				});
 			} else {
 				console.log('비밀번호 변경');
 				res.send({
