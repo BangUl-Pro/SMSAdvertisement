@@ -19,9 +19,90 @@ app.get('/', function (req, res) {
 
 app.post('/signUp', function(req, res) {
 	req.accepts('application/json');
-	console.log('\n form = ' + req.body.form);
-	console.log('\n body = ' + req.body.input);
-	console.log('\n id = ' + req.body.id);	
+	
+	var id = req.body.id;
+	var pw = req.body.pw;
+	var name = req.body.name;
+	var birth = req.body.birth;
+	var mail = req.body.mail;
+	
+	console.log('회원가입');
+	console.info('id = ' + id);
+	console.info('pw = ' + pw);
+	console.info('name = ' + name);
+	console.info('mail = ' + mail);
+	console.info('birth = ' + birth);
+	
+	if (!id || !pw || !name || !mail || !birth) {
+		console.error('NullPointerException');
+		socket.emit('signUp', {
+			'code':303
+		});
+		return;
+	}
+	
+	
+	mySqlConnection.query('select * from user_auth where user_id = "' + id + '";', function(err, result) {
+		if (err) {
+			// 아이디 중복검사 에러 
+			console.error('회원가입 아이디 중복검사 에러 = ' + err);
+			socket.emit('signUp', {
+				'code' : 304
+			});
+		} else if (result[0]) {
+			// 아이디 중복 에러
+			socket.emit('signUp', {
+				'code':305
+			});
+			console.error('회원가입 아이디 중복 : ' + err);
+		} else {
+			// 아이디 중복 없을 때
+			mySqlConnection.query('select * from user_auth where user_mail = "' + mail + '";', function(err, emailResult) {
+				if (err) {
+					// 이메일 중복 검사 에러
+					socket.emit('signUp', {
+						'code':306
+					});
+					console.error('회원가입 이메일 중복검사 에러 : ' + err);
+				} else if (emailResult[0]) {
+					// 이메일 중복 에러
+					socket.emit('signUp', {
+						'code':307
+					});
+					console.error('회원가입 이메일 중복 : ' + err);
+				} else {
+					// 이메일 중복 없을 때 
+					var input = {
+							user_id : id,
+							user_pw : pw,
+							user_name : name,
+							user_mail : mail,
+							user_birth : birth,
+							user_socket : null
+					};
+					
+					
+					mySqlConnection.query('insert into user_auth set ?', input, function(err, signUpResult) {
+						if (err) {
+							// db 입력 에러 
+							socket.emit('signUp', {
+								'code':308
+							});
+							console.error('DB입력 에러 : ' + err);
+						} else {
+							// 성공
+							socket.emit('signUp', {
+								'code':200,
+								'id':id
+							});
+							console.log('회원가입 성공');
+						}
+					});
+				}
+			});
+		}
+	});
+	
 	res.send('signUp!');
 });
 
@@ -123,93 +204,6 @@ io.sockets.on('connection', function(socket) {
 	socket.on('disconnect', function() {
 		pool.releaseConnection(mySqlConnection);
 		console.log('연결 해제');
-	});
-	
-	
-	// 회원가입 
-	socket.on('signUp', function(data) {
-		var id = data.id;
-		var pw = data.pw;
-		var name = data.name;
-		var birth = data.birth;
-		var mail = data.mail;
-		
-		console.log('회원가입');
-		console.info('id = ' + id);
-		console.info('pw = ' + pw);
-		console.info('name = ' + name);
-		console.info('mail = ' + mail);
-		console.info('birth = ' + birth);
-		
-		if (!id || !pw || !name || !mail || !birth) {
-			console.error('NullPointerException');
-			socket.emit('signUp', {
-				'code':303
-			});
-			return;
-		}
-		
-		
-		mySqlConnection.query('select * from user_auth where user_id = "' + id + '";', function(err, result) {
-			if (err) {
-				// 아이디 중복검사 에러 
-				console.error('회원가입 아이디 중복검사 에러 = ' + err);
-				socket.emit('signUp', {
-					'code' : 304
-				});
-			} else if (result[0]) {
-				// 아이디 중복 에러
-				socket.emit('signUp', {
-					'code':305
-				});
-				console.error('회원가입 아이디 중복 : ' + err);
-			} else {
-				// 아이디 중복 없을 때
-				mySqlConnection.query('select * from user_auth where user_mail = "' + mail + '";', function(err, emailResult) {
-					if (err) {
-						// 이메일 중복 검사 에러
-						socket.emit('signUp', {
-							'code':306
-						});
-						console.error('회원가입 이메일 중복검사 에러 : ' + err);
-					} else if (emailResult[0]) {
-						// 이메일 중복 에러
-						socket.emit('signUp', {
-							'code':307
-						});
-						console.error('회원가입 이메일 중복 : ' + err);
-					} else {
-						// 이메일 중복 없을 때 
-						var input = {
-								user_id : id,
-								user_pw : pw,
-								user_name : name,
-								user_mail : mail,
-								user_birth : birth,
-								user_socket : null
-						};
-						
-						
-						mySqlConnection.query('insert into user_auth set ?', input, function(err, signUpResult) {
-							if (err) {
-								// db 입력 에러 
-								socket.emit('signUp', {
-									'code':308
-								});
-								console.error('DB입력 에러 : ' + err);
-							} else {
-								// 성공
-								socket.emit('signUp', {
-									'code':200,
-									'id':id
-								});
-								console.log('회원가입 성공');
-							}
-						});
-					}
-				});
-			}
-		});
 	});
 	
 	
