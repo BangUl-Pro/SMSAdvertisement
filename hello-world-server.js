@@ -14,7 +14,7 @@ app.post('/signUp', function(req, res) {
 	res.send('signUp!');
 	console.log('\n req = ' + req.body);
 	console.log('\n body = ' + JSON.stringify(req.body));
-	console.log('\n res = ' + res.param("form", null));
+	console.log('\n res = ' + res);
 });
 
 
