@@ -122,13 +122,13 @@ app.post('/findId', function(req, res){
 		});
 		console.error('아이디 찾기 값 누락');
 	} else {
-		mySqlConnection.query('select user_id from user_auth where user_mail = ' + mail + ' and user_name = ' + name + ' and user_birth = ' + birth + ';', function(err, result) {
+		mySqlConnection.query('select user_id from user_auth where user_mail = "' + mail + '" and user_name = "' + name + '" and user_birth = "' + birth + '";', function(err, result) {
 			if (err) {
 				// 아이디 찾기 에러
 				res.send({
 					'code':310
 				});
-				console.error('아이디 찾기 에러');
+				console.error('아이디 찾기 에러 = ' + err);
 			} else if (!result[0]) {
 				// 아무 값도 없을 때
 				res.send({
