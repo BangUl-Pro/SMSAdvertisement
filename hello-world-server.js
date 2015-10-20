@@ -108,6 +108,57 @@ io.sockets.on('connection', function(socket) {
 		console.log('연결 해제');
 	});
 	
+	
+	// 회원가입 
+	socket.on('signUp', function(data) {
+		var id = data.id;
+		var pw = data.pw;
+		var name = data.name;
+		var birth = data.birth;
+		var mail = data.mail;
+		
+		console.log('회원가입');
+		console.info('id = ' + id);
+		console.info('pw = ' + pw);
+		console.info('name = ' + name);
+		console.info('mail = ' + mail);
+		console.info('birth = ' + birth);
+		
+		if (id || pw || name || mail || birth) {
+			console.error('NullPointerException');
+			socket.emit('signUp', {
+				'code':303
+			});
+		}
+		
+		var input = {
+				user_id : id,
+				user_pw : pw,
+				user_name : name,
+				user_mail : mail,
+				user_birth : birth
+		};
+		
+		mySqlConnection.query('insert into user_auth set ?', input, function(err, result) {
+			if (err) {
+				// 아이디 중복 에러
+				socket.emit('signUp', {
+					'code':304
+				});
+				console.log('회원가입 아이디 중복 ');
+			} else {
+				// 성공
+				socket.emit('signUp', {
+					'code':200,
+					'id':id
+				});
+				console.log('회원가입 성공');
+			}
+		});
+	});
+	
+	
+	// 로그인 
 	socket.on('login', function(data) {
 		var id = data.id;
 		var pw = data.pw;
