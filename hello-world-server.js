@@ -105,6 +105,49 @@ app.post('/signUp', function(req, res) {
 });
 
 
+app.post('/findId', function(req, res){
+	var mail = req.body.mail;
+	var name = req.body.name;
+	var birth = req.body.birth;
+	
+	console.log('아이디 찾기');
+	console.info('mail = ' + mail);
+	console.info('name = ' + name);
+	console.info('birth = ' + birth);
+	
+	if (!mail || !name || !birth) {
+		// 값 누락
+		res.send({
+			'code':309
+		});
+		console.error('아이디 찾기 값 누락');
+	} else {
+		mySqlConnection.query('select user_id from user_auth where user_mail = ' + mail + ' and user_name = ' + name + ' and user_birth = ' + birth + ';', function(err, result) {
+			if (err) {
+				// 아이디 찾기 에러
+				res.send({
+					'code':310
+				});
+				console.error('아이디 찾기 에러');
+			} else if (!result[0]) {
+				// 아무 값도 없을 때
+				res.send({
+					'code':311
+				});
+				console.error('일치하는 아이디 없음');
+			} else {
+				// 일치하는 아이디 발견
+				res.send({
+					'code':200,
+					'id':result[0].user_id
+				});
+				console.log('일치하는 아이디 발견 = ' + result[0].user_id);
+			}
+		});
+	}
+});
+
+
 //몽고디비
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://username:12345678@ds041154.mongolab.com:41154/heroku_s264w1vj');
