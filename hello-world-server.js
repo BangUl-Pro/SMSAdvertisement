@@ -186,7 +186,7 @@ io.sockets.on('connection', function(socket) {
 					// 일치하는 아이디가 있다면
 					mySqlConnection.query('update user_auth set user_socket = "' + socket.id + '" where id = "' + id + '";', function(err, result) {
 						if (err) {
-							console.log('로그인 socket 정보 등록 에러');
+							console.log('로그인 socket 정보 등록 에러 : ' + err);
 							socket.emit('login', {
 								'code':305
 							});
