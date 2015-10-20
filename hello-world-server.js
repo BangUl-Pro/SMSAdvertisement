@@ -6,7 +6,7 @@ var server = http.createServer(app).listen(process.env.PORT || 5000);
 var io = require('socket.io').listen(server);
 
 var bodyParser = require('body-parser');
-app.user(bodyParser());
+app.use(bodyParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 	  extended: true
@@ -21,6 +21,7 @@ app.post('/signUp', function(req, res) {
 	req.accepts('application/json');
 	console.log('\n form = ' + req.body.form);
 	console.log('\n body = ' + req.body.input);
+	console.log('\n id = ' + req.body.id);	
 	res.send('signUp!');
 });
 
