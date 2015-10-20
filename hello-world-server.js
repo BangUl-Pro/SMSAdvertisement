@@ -183,6 +183,8 @@ io.sockets.on('connection', function(socket) {
 						'code':302
 					});
 				} else {
+					console.log('socket.id = ' + socket.id);
+					
 					// 일치하는 아이디가 있다면
 					mySqlConnection.query('update user_auth set user_socket = "' + socket.id + '" where id = "' + id + '";', function(err, result) {
 						if (err) {
