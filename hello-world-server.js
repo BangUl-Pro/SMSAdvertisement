@@ -12,7 +12,7 @@ app.get('/', function (req, res) {
 
 app.post('/signUp', function(req, res) {
 	res.send('signUp!');
-	console.log('\n req = ' + req[0]);
+	console.log('\n req = ' + req.param('form', null));
 	console.log('\n res = ' + res);
 });
 
