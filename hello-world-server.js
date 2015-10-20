@@ -124,11 +124,12 @@ io.sockets.on('connection', function(socket) {
 		console.info('mail = ' + mail);
 		console.info('birth = ' + birth);
 		
-		if (id || pw || name || mail || birth) {
+		if (!id || !pw || !name || !mail || !birth) {
 			console.error('NullPointerException');
 			socket.emit('signUp', {
 				'code':303
 			});
+			return;
 		}
 		
 		var input = {
