@@ -148,6 +148,89 @@ app.post('/findId', function(req, res){
 });
 
 
+// 비밀번호 조
+app.post('/findPw', function(req, res) {
+	var id = req.body.id;
+	var mail = req.body.mail;
+	var name = req.body.name;
+	
+	console.log('비밀번호 조');
+	console.info('id = ' + id);
+	console.info('mail = ' + mail);
+	console.info('name = ' + name);
+	
+	if (!id || !mail || !name) {
+		// 값 누락
+		console.error('비밀번호 조 값 누락');
+		res.send({
+			'code':312
+		});
+	} else {
+		mySqlConnection.query('select * from user_auth where user_id = "' + id + '" and user_mail = "' + mail + '" and user_name = "' + name + '";', function (err, result) {
+			if (err) {
+				console.error('비밀번호 조회 에러 = ' + err);
+				res.send({
+					'code':313
+				});
+			} else if (result[0]) {
+				// 일치하는 계정이 있으면
+				res.send({
+					'code':200,
+					'id':id
+				});
+				console.log('비밀번호 변경 승인');
+			} else {
+				// 일치하는 계정이 없으면
+				res.send({
+					'code':314
+				});
+				console.error('일치하는 계정이 없음');
+			}
+		});
+	}
+});
+
+
+// 비밀번호 변경
+app.post('updatePw', function(req, res) {
+	var id = req.body.id;
+	var pw = req.body.pw;
+	
+	console.log('비밀번호 변경');
+	console.info('id = ' + id);
+	console.info('pw = ' + pw);
+	
+	if (!id || !pw) {
+		// 값 누락
+		console.error('비밀번호 변경 값 누락');
+		res.send({
+			'code':315
+		});
+	} else {
+		mySqlConnection.query('update user_auth set user_pw = "' + pw + '" where user_id = "' + id + '";', function(err ,result) {
+			if (err) {
+				console.error('비밀번호 변경 에러 = ' + err);
+				res.send({
+					'code':316
+				})
+			} else if (!result[0]) {
+				// 값이 없을 때
+				console.error('일치하는 아이디 없음');
+				res.send({
+					'code':317
+				});
+			} else {
+				console.log('비밀번호 변경');
+				res.send({
+					'code':200
+				});
+			}
+		});
+		
+	}
+});
+
+
 //몽고디비
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://username:12345678@ds041154.mongolab.com:41154/heroku_s264w1vj');
