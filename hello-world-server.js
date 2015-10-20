@@ -134,7 +134,7 @@ io.sockets.on('connection', function(socket) {
 		}
 		
 		
-		mySqlConnection.query('select * from user_auth where user_id = ' + id + ';', function(err, result) {
+		mySqlConnection.query('select * from user_auth where user_id = "' + id + '";', function(err, result) {
 			if (err) {
 				// 아이디 중복검사 에러 
 				console.error('회원가입 아이디 중복검사 에러 = ' + err);
@@ -149,7 +149,7 @@ io.sockets.on('connection', function(socket) {
 				console.error('회원가입 아이디 중복 : ' + err);
 			} else {
 				// 아이디 중복 없을 때
-				mySqlConnection.query('select * from user_auth where user_mail = ' + mail + ';', function(err, emailResult) {
+				mySqlConnection.query('select * from user_auth where user_mail = "' + mail + '";', function(err, emailResult) {
 					if (err) {
 						// 이메일 중복 검사 에러
 						socket.emit('signUp', {
@@ -180,7 +180,7 @@ io.sockets.on('connection', function(socket) {
 								socket.emit('signUp', {
 									'code':308
 								});
-								console.log('회원가입 아이디 중복 : ' + err);
+								console.error('회원가입 아이디 중복 : ' + err);
 							} else {
 								// 성공
 								socket.emit('signUp', {
