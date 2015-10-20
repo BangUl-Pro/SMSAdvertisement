@@ -10,6 +10,11 @@ app.get('/', function (req, res) {
     console.log('\n Hi');
 });
 
+app.get('/signUp', function(req, res) {
+	console.log('\n signUp');
+});
+
+
 //몽고디비
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://username:12345678@ds041154.mongolab.com:41154/heroku_s264w1vj');
@@ -176,11 +181,11 @@ io.sockets.on('connection', function(socket) {
 						
 						mySqlConnection.query('insert into user_auth set ?', input, function(err, signUpResult) {
 							if (err) {
-								// 아이디 중복 에러
+								// db 입력 에러 
 								socket.emit('signUp', {
 									'code':308
 								});
-								console.error('회원가입 아이디 중복 : ' + err);
+								console.error('DB입력 에러 : ' + err);
 							} else {
 								// 성공
 								socket.emit('signUp', {
