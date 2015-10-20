@@ -225,6 +225,40 @@ app.post('/updatePw', function(req, res) {
 });
 
 
+// 로그인
+app.post('/login', function(req, res) {
+	var id = req.body.id;
+	var pw = req.body.pw;
+	console.log('로그인 요청');
+	console.info('id = ' + id);
+	console.info('pw = ' + pw);
+	
+	mySqlConnection.query("select user_id from user_auth where user_id = '" + id + "' and user_pw = '" + pw + "';", function(err, result) {
+		if (err) {
+			res.send({
+				'code':301
+			});
+			console.error('로그인  DB 에러 = ' + err);
+		} else {
+			if (!result[0] || !result[0].user_id) {
+				// 일치하는 아이디가 없다면
+				console.log('일치하는 아이디가 없음');
+				res.send({
+					'code':302
+				});
+			} else {
+				// 일치하는 아이디가 있다면
+				console.log('로그인 성공');
+				res.send({
+					'code':200,
+					'id':id
+				});
+			} 
+		}
+	});
+});
+
+
 //몽고디비
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://username:12345678@ds041154.mongolab.com:41154/heroku_s264w1vj');
