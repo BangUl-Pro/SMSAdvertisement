@@ -51,7 +51,7 @@ io.sockets.on('connection', function(socket) {
 	});
 	
 	socket.on('create', function() {
-		mySqlConnection.query("create table if not exists user_auth (user_id VARCHAR(50) not null primary key, user_pw VARCHAR(20), user_mail VARCHAR(40), user_name VARCHAR(20), user_birth INT);", function(err, result) {
+		mySqlConnection.query("create table if not exists user_auth (user_id VARCHAR(50) not null primary key, user_pw VARCHAR(20), user_mail VARCHAR(40), user_name VARCHAR(20), user_birth INT, user_socket VARCHAR(15));", function(err, result) {
 			if (err) {
 				console.error('테이블 생성 에러 = ' + err);
 			} else {
@@ -76,7 +76,8 @@ io.sockets.on('connection', function(socket) {
 				user_pw : '1234',
 				user_mail : 'mail',
 				user_name : 'lee',
-				user_birth : 970224
+				user_birth : 970224,
+				user_socket : null
 		};
 		
 		mySqlConnection.query('insert into user_auth set ?', inputData, function(err, rows) {
@@ -137,7 +138,8 @@ io.sockets.on('connection', function(socket) {
 				user_pw : pw,
 				user_name : name,
 				user_mail : mail,
-				user_birth : birth
+				user_birth : birth,
+				user_socket : null
 		};
 		
 		mySqlConnection.query('insert into user_auth set ?', input, function(err, result) {
@@ -146,7 +148,7 @@ io.sockets.on('connection', function(socket) {
 				socket.emit('signUp', {
 					'code':304
 				});
-				console.log('회원가입 아이디 중복 ');
+				console.log('회원가입 아이디 중복 : ' + err);
 			} else {
 				// 성공
 				socket.emit('signUp', {
@@ -182,10 +184,19 @@ io.sockets.on('connection', function(socket) {
 					});
 				} else {
 					// 일치하는 아이디가 있다면
-					console.log('로그인 성공');
-					socket.emit('login', {
-						'code':200,
-						'id':result[0].user_id
+					mySqlConnection.query('update user_auth set user_socket = "' + socket.id + '" where id = "' + id + '";', function(err, result) {
+						if (err) {
+							console.log('로그인 socket 정보 등록 에러');
+							socket.emit('login', {
+								'code':305
+							});
+						} else {
+							console.log('로그인 성공');
+							socket.emit('login', {
+								'code':200,
+								'id':id
+							});
+						}
 					});
 				} 
 			}
