@@ -5,6 +5,12 @@ var http = require('http'),
 var server = http.createServer(app).listen(process.env.PORT || 5000);
 var io = require('socket.io').listen(server);
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+	  extended: true
+	})); 
+
 app.get('/', function (req, res) {
     res.send('hi');
     console.log('\n Hi');
@@ -13,7 +19,7 @@ app.get('/', function (req, res) {
 app.post('/signUp', function(req, res) {
 	req.accepts('application/json');
 	console.log('\n req = ' + req.toString());
-	console.log('\n body = ' + JSON.stringify(req));
+	console.log('\n body = ' + req.body);
 	console.log('\n res = ' + res);
 	res.send('signUp!');
 });
