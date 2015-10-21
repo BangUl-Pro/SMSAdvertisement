@@ -250,7 +250,7 @@ app.post('/sendMsg', function(req, res) {
 				var socketId = result[0].user_socket;
 				console.info('user_socketId = ' + socketId);
 				
-				io.sockets.connected[socketId].emit('sendMsg', {
+				io.to(socketId).emit('sendMsg', {
 					'code':200,
 					'num':num
 				});
