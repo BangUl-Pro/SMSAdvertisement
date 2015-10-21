@@ -257,7 +257,7 @@ app.post('/sendMsg', function(req, res) {
 			}
 		});
 	}
-})
+});
 
 
 // 로그인
