@@ -247,7 +247,7 @@ app.post('/sendMsg', function(req, res) {
 					'code':329
 				})
 			} else {
-				var socketId = result[0];
+				var socketId = result[0].user_socket;
 				console.info('user_socketId = ' + socketId);
 				
 				io.sockets.sockets[socketId].emit('sendMsg', {
