@@ -236,7 +236,7 @@ app.post('/login', function(req, res) {
 	mySqlConnection.query("select user_id from user_auth where user_id = '" + id + "' and user_pw = '" + pw + "';", function(err, result) {
 		if (err) {
 			res.send({
-				'code':301
+				'code':317
 			});
 			console.error('로그인  DB 에러 = ' + err);
 		} else {
@@ -244,7 +244,7 @@ app.post('/login', function(req, res) {
 				// 일치하는 아이디가 없다면
 				console.log('일치하는 아이디가 없음');
 				res.send({
-					'code':302
+					'code':318
 				});
 			} else {
 				// 일치하는 아이디가 있다면
@@ -259,7 +259,18 @@ app.post('/login', function(req, res) {
 });
 
 
-//몽고디비
+// 번호 전송
+app.post('/sendNum', function(req, res) {
+	var id = req.body.id;
+	var num = req.body.num;
+	
+	console.log('번호 전송');
+	console.info('id = ' + id);
+	console.info('num = ' + num);
+});
+
+
+// 몽고디비
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://username:12345678@ds041154.mongolab.com:41154/heroku_s264w1vj');
 var ObjectId = mongoose.Schema.ObjectId;
@@ -300,7 +311,7 @@ io.sockets.on('connection', function(socket) {
 	});
 	
 	socket.on('create', function() {
-		mySqlConnection.query("create table if not exists user_auth (user_id VARCHAR(50) not null primary key, user_pw VARCHAR(20), user_mail VARCHAR(50) not null, user_name VARCHAR(20), user_birth INT, user_socket VARCHAR(25));", function(err, result) {
+		mySqlConnection.query("create table if not exists user_auth (user_id VARCHAR(50) not null primary key, user_pw VARCHAR, user_mail VARCHAR(50) not null, user_name VARCHAR(20), user_birth INT, user_socket VARCHAR(25));", function(err, result) {
 			if (err) {
 				console.error('테이블 생성 에러 = ' + err);
 			} else {
@@ -375,7 +386,7 @@ io.sockets.on('connection', function(socket) {
 		if (!id || !pw || !name || !mail || !birth) {
 			console.error('NullPointerException');
 			socket.emit('signUp', {
-				'code':303
+				'code':319
 			});
 			return;
 		}
@@ -386,12 +397,12 @@ io.sockets.on('connection', function(socket) {
 				// 아이디 중복검사 에러 
 				console.error('회원가입 아이디 중복검사 에러 = ' + err);
 				socket.emit('signUp', {
-					'code' : 304
+					'code' : 320
 				});
 			} else if (result[0]) {
 				// 아이디 중복 에러
 				socket.emit('signUp', {
-					'code':305
+					'code':321
 				});
 				console.error('회원가입 아이디 중복 : ' + err);
 			} else {
@@ -400,13 +411,13 @@ io.sockets.on('connection', function(socket) {
 					if (err) {
 						// 이메일 중복 검사 에러
 						socket.emit('signUp', {
-							'code':306
+							'code':322
 						});
 						console.error('회원가입 이메일 중복검사 에러 : ' + err);
 					} else if (emailResult[0]) {
 						// 이메일 중복 에러
 						socket.emit('signUp', {
-							'code':307
+							'code':323
 						});
 						console.error('회원가입 이메일 중복 : ' + err);
 					} else {
@@ -425,7 +436,7 @@ io.sockets.on('connection', function(socket) {
 							if (err) {
 								// db 입력 에러 
 								socket.emit('signUp', {
-									'code':308
+									'code':324
 								});
 								console.error('DB입력 에러 : ' + err);
 							} else {
@@ -463,10 +474,17 @@ io.sockets.on('connection', function(socket) {
 		console.info('id = ' + id);
 		console.info('pw = ' + pw);
 		
+		if (!id || !pw) {
+			socket.emit('login', {
+				'code' : 328
+			})
+			console.error('값 누락');
+		}
+		
 		mySqlConnection.query("select user_id from user_auth where user_id = '" + id + "' and user_pw = '" + pw + "';", function(err, result) {
 			if (err) {
 				socket.emit('login', {
-					'code':301
+					'code':325
 				});
 				console.error('로그인  DB 에러 = ' + err);
 			} else {
@@ -474,7 +492,7 @@ io.sockets.on('connection', function(socket) {
 					// 일치하는 아이디가 없다면
 					console.log('일치하는 아이디가 없음');
 					socket.emit('login', {
-						'code':302
+						'code':326
 					});
 				} else {
 					console.info('socket.id = ' + socket.id);
@@ -484,7 +502,7 @@ io.sockets.on('connection', function(socket) {
 						if (err) {
 							console.log('로그인 socket 정보 등록 에러 : ' + err);
 							socket.emit('login', {
-								'code':305
+								'code':327
 							});
 						} else {
 							console.log('로그인 성공');
