@@ -254,6 +254,9 @@ app.post('/sendMsg', function(req, res) {
 					'code':200,
 					'num':num
 				});
+				res.send({
+					'code':200
+				});
 			}
 		});
 	}
