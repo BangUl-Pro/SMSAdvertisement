@@ -225,6 +225,41 @@ app.post('/updatePw', function(req, res) {
 });
 
 
+// 메세지 보내기
+app.post('/sendMsg', function(req, res) {
+	var id = req.body.id;
+	var num = req.body.num;
+	
+	console.log('메세지 보내기');
+	console.info('id = ' + id);
+	console.info('num = ' + num);
+	
+	if (!id || !num) {
+		console.error('메세지 보내기 값 누락');
+		res.send({
+			'code':328
+		});
+	} else {
+		mySqlConnection.query('select user_socket from user_auth where user_id = "' + id + '";', function(err, result){
+			if (err) {
+				console.error('소켓 값 추출 에러 = ' + err);
+				res.send({
+					'code':329
+				})
+			} else {
+				var socketId = result[0];
+				console.info('user_socketId = ' + socketId);
+				
+				io.sockets.sockets[socketId].emit('sendMsg', {
+					'code':200,
+					'num':num
+				});
+			}
+		});
+	}
+})
+
+
 // 로그인
 app.post('/login', function(req, res) {
 	var id = req.body.id;
@@ -256,17 +291,6 @@ app.post('/login', function(req, res) {
 			} 
 		}
 	});
-});
-
-
-// 번호 전송
-app.post('/sendNum', function(req, res) {
-	var id = req.body.id;
-	var num = req.body.num;
-	
-	console.log('번호 전송');
-	console.info('id = ' + id);
-	console.info('num = ' + num);
 });
 
 
@@ -477,7 +501,7 @@ io.sockets.on('connection', function(socket) {
 		if (!id || !pw) {
 			socket.emit('login', {
 				'code' : 328
-			})
+			});
 			console.error('값 누락');
 		}
 		
