@@ -331,7 +331,7 @@ var errModel = mongoose.model('err', errSchema);
 
 
 //mySQL
-var mySqlUrl = 'mysql://vw3vn7zlemz835me:zupct54e81evwokd@jw0ch9vofhcajqg7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/';
+var mySqlUrl = 'mysql://vw3vn7zlemz835me:zupct54e81evwokd@jw0ch9vofhcajqg7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/eooioxp79le8d0gp';
 var mySqlHost = 'jw0ch9vofhcajqg7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com';
 var mySqlUserName = 'vw3vn7zlemz835me';
 var mySqlPw = 'zupct54e81evwokd';
@@ -356,7 +356,7 @@ io.sockets.on('connection', function(socket) {
 	});
 	
 	socket.on('create', function() {
-		mySqlConnection.query("create table if not exists user_auth (user_id VARCHAR(50) not null primary key, user_pw VARCHAR, user_mail VARCHAR(50) not null, user_name VARCHAR(20), user_birth INT, user_socket VARCHAR(25));", function(err, result) {
+		mySqlConnection.query("create table if not exists user_auth (user_id VARCHAR(50) not null primary key, user_pw VARCHAR, user_mail VARCHAR(50) not null, user_name VARCHAR(20), user_birth INT, user_socket VARCHAR(250));", function(err, result) {
 			if (err) {
 				console.error('테이블 생성 에러 = ' + err);
 			} else {
