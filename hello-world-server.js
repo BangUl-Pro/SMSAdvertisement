@@ -10,7 +10,12 @@ app.use(bodyParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 	  extended: true
-	})); 
+})); 
+
+var gcm = require('node-gcm');
+var gcmServerKey = "AIzaSyCQ44BmvsY1SfEszh2JvVO5uAL4Z7M7Wso";
+var sender = new gcm.Sender(gcmServerKey);
+
 
 app.get('/', function (req, res) {
     res.send('hi');
@@ -245,15 +250,28 @@ app.post('/sendMsg', function(req, res) {
 				console.error('소켓 값 추출 에러 = ' + err);
 				res.send({
 					'code':329
-				})
-			} else {
-				var socketId = result[0].user_socket;
-				console.info('user_socketId = ' + socketId);
-				
-				io.to(socketId).emit('sendMsg', {
-					'code':200,
-					'num':num
 				});
+			} else {
+				var socketId = [];
+				socketId.push(result[0].user_socket);
+				console.info('user_socketId = ' + result[0].user_socket);
+				
+				var msg = gcm.Message({
+					collapseKey: "sms",
+					delayWhileIdle: true,
+					timeToLive: 3,
+					data: {
+						title: num
+					}
+				});
+				sender.send(msg, socketId, 4, function(err, result) {
+					if (err) {
+						console.error(err);
+					} else {
+						console.log('result = ' + result);
+					}
+				});
+				
 				res.send({
 					'code':200
 				});
@@ -497,11 +515,14 @@ io.sockets.on('connection', function(socket) {
 	socket.on('login', function(data) {
 		var id = data.id;
 		var pw = data.pw;
+		var token = data.token;
+		
 		console.log('로그인 요청');
 		console.info('id = ' + id);
 		console.info('pw = ' + pw);
+		console.info('token = ' + token);
 		
-		if (!id || !pw) {
+		if (!id || !pw || !token) {
 			socket.emit('login', {
 				'code' : 328
 			});
@@ -522,10 +543,8 @@ io.sockets.on('connection', function(socket) {
 						'code':326
 					});
 				} else {
-					console.info('socket.id = ' + socket.id);
-					
 					// 일치하는 아이디가 있다면
-					mySqlConnection.query('update user_auth set user_socket = "' + socket.id + '" where user_id = "' + id + '";', function(err, result) {
+					mySqlConnection.query('update user_auth set user_socket = "' + token + '" where user_id = "' + id + '";', function(err, result) {
 						if (err) {
 							console.log('로그인 socket 정보 등록 에러 : ' + err);
 							socket.emit('login', {
