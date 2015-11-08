@@ -234,12 +234,14 @@ app.post('/updatePw', function(req, res) {
 app.post('/sendMsg', function(req, res) {
 	var id = req.body.id;
 	var num = req.body.num;
+	var fromNum = req.body.fromNum;
 	
 	console.log('메세지 보내기');
 	console.info('id = ' + id);
 	console.info('num = ' + num);
+	console.info('fromNum = ' + fromNum);
 	
-	if (!id || !num) {
+	if (!id || !num || !fromNum) {
 		console.error('메세지 보내기 값 누락');
 		res.send({
 			'code':328
@@ -261,7 +263,8 @@ app.post('/sendMsg', function(req, res) {
 					delayWhileIdle: true,
 					timeToLive: 3,
 					data: {
-						title: num
+						title: num,
+						message : fromNum
 					}
 				});
 				sender.send(msg, socketId, 4, function(err, result) {
