@@ -1432,6 +1432,22 @@ io.sockets.on('connection', function(socket) {
 			}
 		});
 	});
+
+	socket.on('deleteGroups', function(data) {
+		mySqlConnection.query('DELETE FROM ' + GROUP_TABLE, function(err) {
+				if (err) {
+					console.log('deleteGroup err = ' + err);
+					socket.emit('deleteGroup', {
+						'code' : 661
+					});
+				} else {
+					console.log('deleteGroup 성공');
+					socket.emit('deleteGroup', {
+						'code' : 200
+					});
+				}
+			});
+	});
 	
 	socket.on('insertMaster', function(data) {
 		var group_id = data.group_id;
