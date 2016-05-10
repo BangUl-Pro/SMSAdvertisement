@@ -841,6 +841,39 @@ io.sockets.on('connection', function(socket) {
 			}
 		});
 	});
+
+	socket.on('createA', function(data) {
+		mySqlConnection.query('create table if not exists ' + MEMBER_TABLE + ' (' +
+				MEMBER_GROUP_ID + ' INT not null, ' +
+				MEMBER_USER_ID + ' VARCHAR(50) NOT NULL);', function(err, result) {
+			if (err) {
+				console.error('그룹 멤버 테이블 생성 에러 = ' + err);
+			} else {
+				console.log('그룹 멤버 테이블 생성');
+			}
+		});
+
+		mySqlConnection.query('create table if not exists ' + GROUP_TABLE + ' (' +
+				GROUP_ID + ' INT NOT NULL AUTO_INCREMENT PRIMARY KEY, ' +
+				GROUP_COIN + ' INT NOT NULL, ' +
+				GROUP_NAME + ' TEXT);', function(err, result) {
+			if (err) {
+				console.error('그룹 테이블 생성 에러 = ' + err);
+			} else {
+				console.log('그룹 테이블 생성');
+			}
+		});
+		
+		mySqlConnection.query('create table if not exists ' + MASTER_TABLE + ' (' +
+				MASTER_GROUP_ID + ' INT not null, ' +
+				MASTER_ID + ' VARCHAR(50) not null);', function(err, result) {
+			if (err) {
+				console.error('마스터 테이블 생성 에러 = ' + err);
+			} else {
+				console.log('마스터 테이블 생성');
+			}
+		});
+	});
 	
 	socket.on('delete', function() {
 		mySqlConnection.query("DELETE FROM " + COUNT_TABLE, function(err, result) {
