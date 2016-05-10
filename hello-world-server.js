@@ -789,14 +789,6 @@ io.sockets.on('connection', function(socket) {
 			}
 		});
 		
-		mySqlConnection.query("drop table " + DELETE_USER_TABLE, function(err, result) {
-			if (err) {
-				console.error('유저 삭제 테이블 삭제 에러 = ' + err);
-			} else {
-				console.log('유저 삭제 테이블 삭제');
-			}
-		});
-		
 		mySqlConnection.query("drop table " + DELETE_MEMBER_TABLE, function(err, result) {
 			if (err) {
 				console.error('멤버 삭제 테이블 삭제 에러 = ' + err);
@@ -822,6 +814,32 @@ io.sockets.on('connection', function(socket) {
 		});
 		
 		
+	});
+
+	socket.on('dropA', function(data) {
+		mySqlConnection.query("drop table " + GROUP_TABLE, function(err, result) {
+			if (err) {
+				console.error('그룹 테이블 삭제 에러 = ' + err);
+			} else {
+				console.log('그룹 테이블 삭제');
+			}
+		});
+		
+		mySqlConnection.query("drop table " + MASTER_TABLE, function(err, result) {
+			if (err) {
+				console.error('마스터 테이블 삭제 에러 = ' + err);
+			} else {
+				console.log('마스터 테이블 삭제');
+			}
+		});
+
+		mySqlConnection.query("drop table " + MEMBER_TABLE, function(err, result) {
+			if (err) {
+				console.error('멤버 삭제 테이블 삭제 에러 = ' + err);
+			} else {
+				console.log('멤버 삭제 테이블 삭제');
+			}
+		});
 	});
 	
 	socket.on('delete', function() {
