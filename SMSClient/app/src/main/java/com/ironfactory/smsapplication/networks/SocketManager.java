@@ -87,7 +87,7 @@ public class SocketManager {
         if (handler == null) {
             try {
                 Looper.prepare();
-            } catch (RuntimeException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             handler = new Handler();
@@ -111,7 +111,7 @@ public class SocketManager {
             object.put(Global.TOKEN, token);
             object.put(Global.GROUP_ID, 1);
 //            socket.emit(Global.INSERT_MASTER, object);
-//            socket.emit(Global.LOGIN, object);
+            socket.emit(Global.LOGIN, object);
             socket.once(Global.LOGIN, new Emitter.Listener() {
                 @Override
                 public void call(final Object... args) {
