@@ -1094,8 +1094,8 @@ io.sockets.on('connection', function(socket) {
 		}
 		
 		mySqlConnection.query('SELECT * FROM ' + USER_TABLE +
-			 	' LEFT OUTER JOIN ' + MASTER_TABLE + ' ON ' + USER_TABLE + '.' + USER_ID + '=' + MASTER_TABLE + '.' + MASTER_ID + 
-			 	' LEFT OUTER JOIN ' + GROUP_TABLE + ' ON ' + GROUP_TABLE + '.' + GROUP_ID + '=' + MASTER_TABLE + '.' + MASTER_GROUP_ID + ' WHERE ' + 
+			 	' OUTER JOIN ' + MASTER_TABLE + ' ON ' + USER_TABLE + '.' + USER_ID + '=' + MASTER_TABLE + '.' + MASTER_ID + 
+			 	' OUTER JOIN ' + GROUP_TABLE + ' ON ' + GROUP_TABLE + '.' + GROUP_ID + '=' + MASTER_TABLE + '.' + MASTER_GROUP_ID + ' WHERE ' + 
 			 	USER_TABLE + '.' + USER_ID + ' = "' + id + '" AND ' +
 			 	USER_TABLE + '.' + USER_PW + ' = "' + pw + '";', function(err, result) {
 			if (err) {
@@ -1835,7 +1835,7 @@ io.sockets.on('connection', function(socket) {
 			}
 		});
 	});
-	
+
 	socket.on('insertGroup', function(data) {
 		var group_name = data.group_name;
 		
