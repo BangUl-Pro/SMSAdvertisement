@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">M# SMS</string>
+    <string name="title_activity_login">M# SMS</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_id">아이디</string>
+    <string name="prompt_password">비밀번호</string>
+    <string name="prompt_sms_content">문자 내용</string>
+    <string name="prompt_sms_phone_num">매장 번호</string>
+
+    <string name="action_sign_in">로그인</string>
+    <string name="action_sign_up">회원가입</string>
+    <string name="action_sign_in_short">로그인</string>
+    <string name="error_invalid_password">비밀번호가 짧습니다</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">필수 입력사항</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="code_success">성공했습니다.</string>
+    <string name="error_network">네트워크가 불안정합니다.</string>
+    <string name="error_no_id">아이디, 비밀번호를 확인하세요.</string>
+    <string name="error_overlap_id">이미 사용 중인 아이디 입니다.</string>
+    <string name="title_activity_tab">TabActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

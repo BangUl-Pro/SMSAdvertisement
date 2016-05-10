@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:text="코인 잔액"
+        android:textSize="@dimen/font_ultra_big"
+        android:layout_marginTop="@dimen/margin_super_big"
+        android:layout_marginBottom="@dimen/margin_super_big"/>
+
+
+
+    <TextView
+        android:id="@+id/fragment_coin_money"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:text="1111원"
+        android:textSize="@dimen/font_ultra_big"
+        android:layout_marginTop="@dimen/margin_super_big"
+        android:layout_marginBottom="@dimen/margin_super_big"/>
+
+
+
+    <TextView
+        android:id="@+id/fragment_coin_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:text="코인 충전"
+        android:textSize="@dimen/font_ultra_big"
+        android:layout_marginTop="@dimen/margin_super_big"
+        android:layout_marginBottom="@dimen/margin_super_big"/>
+
+
+</LinearLayout>

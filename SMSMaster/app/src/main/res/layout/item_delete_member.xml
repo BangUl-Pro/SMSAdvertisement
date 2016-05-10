@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/item_delete_member_user_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_normal"
+        android:singleLine="true"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:id="@+id/item_delete_member_group_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_normal"
+        android:singleLine="true"
+        android:textSize="@dimen/font_normal"
+        android:layout_toRightOf="@id/item_delete_member_user_id"/>
+
+
+    <Button
+        android:id="@+id/item_delete_member_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/item_delete_member_cancel"
+        android:textSize="@dimen/font_normal"
+        android:text="추방"/>
+
+
+    <Button
+        android:id="@+id/item_delete_member_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_normal"
+        android:layout_alignParentRight="true"
+        android:text="취소"/>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,170 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="M# SMS 광고설정"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:textSize="@dimen/font_big"
+            android:layout_marginTop="@dimen/margin_normal"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <CheckBox
+                android:id="@+id/fragment_setting_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="광고 수정 허용"
+                android:layout_gravity="center"/>
+
+
+            <TextView
+                android:id="@+id/fragment_setting_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="추가"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textSize="@dimen/font_normal"
+                android:layout_margin="@dimen/margin_normal"/>
+
+            <TextView
+                android:id="@+id/fragment_setting_except_phone_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="제외목록"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textSize="@dimen/font_normal"
+                android:layout_margin="@dimen/margin_normal"/>
+
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_setting_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="M# SMS 계정정보"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="@dimen/font_normal"
+        android:layout_margin="@dimen/margin_normal"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="상호"
+            android:textColor="@color/black"
+            android:layout_gravity="left|center_vertical"
+            android:textSize="@dimen/font_normal"/>
+
+        <TextView
+            android:id="@+id/fragment_setting_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="상호"
+            android:textColor="@color/black"
+            android:layout_gravity="left|center_vertical"
+            android:textSize="@dimen/font_normal"
+            android:layout_marginLeft="@dimen/margin_normal"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="매장 번호"
+            android:textColor="@color/black"
+            android:layout_gravity="left|center_vertical"
+            android:textSize="@dimen/font_normal"/>
+
+        <TextView
+            android:id="@+id/fragment_setting_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="상호"
+            android:textColor="@color/black"
+            android:layout_gravity="left|center_vertical"
+            android:textSize="@dimen/font_normal"
+            android:layout_marginLeft="@dimen/margin_normal"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/margin_normal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="로그인 계정"
+            android:textColor="@color/black"
+            android:layout_gravity="left|center_vertical"
+            android:textSize="@dimen/font_normal"/>
+
+        <TextView
+            android:id="@+id/fragment_setting_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="상호"
+            android:textColor="@color/black"
+            android:layout_gravity="left|center_vertical"
+            android:textSize="@dimen/font_normal"
+            android:layout_marginLeft="@dimen/margin_normal"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fragment_setting_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="로그아웃"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        android:textSize="@dimen/font_normal"
+        android:layout_marginLeft="@dimen/margin_normal"/>
+
+</LinearLayout>
