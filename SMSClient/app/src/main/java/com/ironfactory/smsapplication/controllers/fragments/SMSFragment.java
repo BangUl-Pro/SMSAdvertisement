@@ -107,6 +107,14 @@ public class SMSFragment extends Fragment {
         groupEntity = getArguments().getParcelable(Global.GROUP);
     }
 
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
+
+    public void setGroupEntity(GroupEntity groupEntity) {
+        this.groupEntity = groupEntity;
+    }
+
     @Override
     public void onResume() {
         super.onResume();

@@ -135,8 +135,15 @@ public class SocketManager {
                                             if (user == null)
                                                 user = new UserEntity(userObject);
                                             GroupEntity groupEntity = new GroupEntity(userObject);
-                                            if (groupEntity.getName() != null)
-                                                groupEntities.add(groupEntity);
+                                            // 이름이 Null이 아니고 앞의 놈과 달라야 삽입
+                                            if (groupEntity.getName() != null) {
+                                                if (groupEntities.size() > 0) {
+                                                    if (groupEntities.get(groupEntities.size() - 1).getId() != groupEntity.getId())
+                                                        groupEntities.add(groupEntity);
+                                                } else {
+                                                    groupEntities.add(groupEntity);
+                                                }
+                                            }
                                         }
 
                                         onLogin.onSuccess(user, groupEntities);

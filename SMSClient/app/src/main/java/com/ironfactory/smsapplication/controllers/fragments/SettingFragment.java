@@ -75,6 +75,9 @@ public class SettingFragment extends Fragment {
         return view;
     }
 
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
 
     private void init(View rootView) {
         addView = (TextView) rootView.findViewById(R.id.fragment_setting_add);

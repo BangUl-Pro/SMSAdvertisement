@@ -1,12 +1,14 @@
 package com.ironfactory.smsapplication.controllers.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -19,6 +21,10 @@ import com.ironfactory.smsapplication.controllers.fragments.SettingFragment;
 import com.ironfactory.smsapplication.entities.GroupEntity;
 import com.ironfactory.smsapplication.entities.UserEntity;
 import com.ironfactory.smsapplication.gcm.ServiceMonitor;
+import com.ironfactory.smsapplication.networks.SocketListener;
+import com.ironfactory.smsapplication.networks.SocketManager;
+
+import java.util.List;
 
 public class TabActivity extends AppCompatActivity {
 
@@ -72,6 +78,41 @@ public class TabActivity extends AppCompatActivity {
 //        groupEntities.add(new GroupEntity(1, "여울컴"));
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        SharedPreferences preferences = getSharedPreferences(Global.APP_NAME, MODE_PRIVATE);
+        String id = preferences.getString(Global.ID, null);
+        String pw = preferences.getString(Global.PW, null);
+        String token = preferences.getString(Global.TOKEN, null);
+        SocketManager.login(id, pw, token, new SocketListener.OnLogin() {
+            @Override
+            public void onSuccess(final UserEntity userEntity, List<GroupEntity> groupEntities) {
+                TabActivity.this.userEntity = userEntity;
+                SocketManager.getGroup(groupEntity.getId(), new SocketListener.OnGetGroup() {
+                    @Override
+                    public void onSuccess(GroupEntity groupEntity) {
+                        TabActivity.this.groupEntity = groupEntity;
+                        Log.d(TAG, "user = " + userEntity);
+                        Log.d(TAG, "group = " + groupEntity);
+                        adapter.setUserEntity(userEntity);
+                        adapter.setGroupEntity(groupEntity);
+                    }
+
+                    @Override
+                    public void onException() {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onException(int code) {
+
+            }
+        });
+    }
 
     private void setListener() {
         tab1.setOnClickListener(new View.OnClickListener() {
@@ -106,20 +147,39 @@ public class TabActivity extends AppCompatActivity {
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        private SMSFragment smsFragment;
+        private CoinFragment coinFragment;
+        private SettingFragment settingFragment;
+        private HelpFragment helpFragment;
+
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
+        }
+
+        public void setUserEntity(UserEntity userEntity) {
+            if (smsFragment != null)
+                smsFragment.setUserEntity(userEntity);
+            if (coinFragment != null)
+                coinFragment.setUserEntity(userEntity);
+            if (settingFragment != null)
+                settingFragment.setUserEntity(userEntity);
+        }
+
+        public void setGroupEntity(GroupEntity groupEntity) {
+            if (smsFragment != null)
+                smsFragment.setGroupEntity(groupEntity);
         }
 
         @Override
         public Fragment getItem(int position) {
             if (position == 0)
-                return SMSFragment.createInstance(userEntity, groupEntity);
+                return smsFragment = SMSFragment.createInstance(userEntity, groupEntity);
             else if (position == 1)
-                return CoinFragment.createInstance(userEntity);
+                return coinFragment = CoinFragment.createInstance(userEntity);
             else if (position == 2)
-                return SettingFragment.createInstance(userEntity);
+                return settingFragment = SettingFragment.createInstance(userEntity);
             else
-                return new HelpFragment();
+                return helpFragment = new HelpFragment();
         }
 
         @Override

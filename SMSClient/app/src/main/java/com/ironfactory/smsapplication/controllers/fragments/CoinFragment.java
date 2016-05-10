@@ -47,6 +47,9 @@ public class CoinFragment extends Fragment {
         return view;
     }
 
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
 
     private void init(View rootView) {
         moneyView = (TextView) rootView.findViewById(R.id.fragment_coin_money);

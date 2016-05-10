@@ -2,60 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/exploded-aar/me.zhanghai.android.materialprogressbar/library/1.1.4/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="2a24cba08e1d865a79e61335f5a1bd64d520106d">
-        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/classes-fe536ca7c5bb59c716d6273c7b3e65b2bf1cac56.jar" />
-    </item>
-    <item
-        jar="/Users/IronFactory/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1-3269cb67cba8591ea2343a7aa28da81c85384a8c.jar" />
-    </item>
-    <item
-        jar="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/8.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="dcb5b75baf05d92e61d5706737200ee55949f97b">
-        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/classes-32b6aa0175f38648808b51d4cad7ddc1a72cfd4d.jar" />
-    </item>
-    <item
-        jar="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1-da56c11d16a5ff8cecc6d7585ed770a990ded978.jar" />
-    </item>
-    <item
-        jar="/Users/IronFactory/.gradle/caches/modules-2/files-2.1/com.github.nkzawa/socket.io-client/0.3.0/8dfd7cf8d1124acb027b3ffd53eafcc518af3ba9/socket.io-client-0.3.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8dfd7cf8d1124acb027b3ffd53eafcc518af3ba9">
-        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/socket.io-client-0.3.0-b73f2045af1ab3d573c49a02011bb635e035972e.jar" />
-    </item>
-    <item
-        jar="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
-        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/classes-5a3deea0631bab28bbea82625c747c7dcd639268.jar" />
-    </item>
-    <item
-        jar="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/exploded-aar/com.github.afollestad.material-dialogs/core/0.8.5.3/jars/classes.jar"
+        jar="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/exploded-aar/com.github.afollestad.material-dialogs/core/0.8.5.3/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="ebecf3acfec70f41f94a66e4d84ae55d78362168">
-        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/classes-ed03331cd6cf1eb8d9e41f7b47dd698959d903a9.jar" />
-    </item>
-    <item
-        jar="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="82825756edeeb3b56b15e73b2edd56e93da5a444">
-        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/classes-fcc489fc29f82a2af41447f3f7a5f4b114acc69a.jar" />
+        <dex dex="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/pre-dexed/debug/classes-eb56bcce7bfccffaaff4cb9d2be23301563d0ca2.jar" />
     </item>
     <item
         jar="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
@@ -63,13 +14,6 @@
         revision="23.0.1"
         sha1="09c5e804bc67fc0580360043dff067df574a60d4">
         <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/classes-08f3604cc84c19d9ba30a21c342b76f36865fdba.jar" />
-    </item>
-    <item
-        jar="/Users/IronFactory/.gradle/caches/modules-2/files-2.1/com.github.nkzawa/engine.io-client/0.3.1/3ca9d0d53a27ecb88538ed874be417cfa827db5d/engine.io-client-0.3.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="3ca9d0d53a27ecb88538ed874be417cfa827db5d">
-        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/engine.io-client-0.3.1-111328f3c60e756487e84f936f595685850c821b.jar" />
     </item>
     <item
         jar="/Users/IronFactory/.gradle/caches/modules-2/files-2.1/org.java-websocket/Java-WebSocket/1.3.0/db2658f013fb163de4a99274c2eb9e17efe535d2/Java-WebSocket-1.3.0.jar"
@@ -86,11 +30,67 @@
         <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/classes-3eaddec72ba668ad65f7f8be7273a26c510e4cae.jar" />
     </item>
     <item
-        jar="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/jars/classes.jar"
+        jar="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1-da56c11d16a5ff8cecc6d7585ed770a990ded978.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
-        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/classes-6a3f883fe0d3c53144b07744ce1d32f4b71610cf.jar" />
+        <dex dex="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/pre-dexed/debug/classes-db0b74edec7d189c3693570173a1c5ed22e19d44.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1-1b2b7e7776e31771540c065be1f0881b9aa5da27.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/pre-dexed/debug/classes-c36d74774cfcb2ebb2b37cabd9e7be804c4b4f96.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/8.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="dcb5b75baf05d92e61d5706737200ee55949f97b">
+        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/classes-32b6aa0175f38648808b51d4cad7ddc1a72cfd4d.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="82825756edeeb3b56b15e73b2edd56e93da5a444">
+        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/classes-fcc489fc29f82a2af41447f3f7a5f4b114acc69a.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/.gradle/caches/modules-2/files-2.1/com.github.nkzawa/engine.io-client/0.3.1/3ca9d0d53a27ecb88538ed874be417cfa827db5d/engine.io-client-0.3.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3ca9d0d53a27ecb88538ed874be417cfa827db5d">
+        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/engine.io-client-0.3.1-111328f3c60e756487e84f936f595685850c821b.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/classes-5a3deea0631bab28bbea82625c747c7dcd639268.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/.gradle/caches/modules-2/files-2.1/com.github.nkzawa/socket.io-client/0.3.0/8dfd7cf8d1124acb027b3ffd53eafcc518af3ba9/socket.io-client-0.3.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8dfd7cf8d1124acb027b3ffd53eafcc518af3ba9">
+        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/socket.io-client-0.3.0-b73f2045af1ab3d573c49a02011bb635e035972e.jar" />
     </item>
     <item
         jar="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
@@ -98,6 +98,76 @@
         revision="23.0.1"
         sha1="5c5699834e9722f1c288fea2de82725d078ba127">
         <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/classes-9f3cf663773a7e0538d52fa3b9265bf8fe5694dc.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/pre-dexed/debug/classes-197f1baf278a8051c4b1ca54940b493169a2e549.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/classes-6a3f883fe0d3c53144b07744ce1d32f4b71610cf.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/pre-dexed/debug/classes-ab14514ba635bfbf833bd7f85b1d98c8dfdda735.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/8.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="dcb5b75baf05d92e61d5706737200ee55949f97b">
+        <dex dex="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/pre-dexed/debug/classes-64348c736528de571293f75ea22edbd9d44701ac.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/exploded-aar/me.zhanghai.android.materialprogressbar/library/1.1.4/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="2a24cba08e1d865a79e61335f5a1bd64d520106d">
+        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/classes-fe536ca7c5bb59c716d6273c7b3e65b2bf1cac56.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/pre-dexed/debug/classes-3b899f582f1a3813d02b7140acd43e98e11977f9.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/exploded-aar/com.github.afollestad.material-dialogs/core/0.8.5.3/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ebecf3acfec70f41f94a66e4d84ae55d78362168">
+        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/classes-ed03331cd6cf1eb8d9e41f7b47dd698959d903a9.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/Users/IronFactory/Downloads/sms/SMSApplication/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1-3269cb67cba8591ea2343a7aa28da81c85384a8c.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="82825756edeeb3b56b15e73b2edd56e93da5a444">
+        <dex dex="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/pre-dexed/debug/classes-1fc1abbb0eed6a064102c44385993ea012229185.jar" />
+    </item>
+    <item
+        jar="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/exploded-aar/me.zhanghai.android.materialprogressbar/library/1.1.4/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="2a24cba08e1d865a79e61335f5a1bd64d520106d">
+        <dex dex="/Users/IronFactory/Desktop/SMSAdvertisement/SMSClient/app/build/intermediates/pre-dexed/debug/classes-09a9a65d61869e5084a8dedd453f01bdbb306722.jar" />
     </item>
 
 </items>
