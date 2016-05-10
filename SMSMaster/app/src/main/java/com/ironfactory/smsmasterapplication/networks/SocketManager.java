@@ -59,12 +59,12 @@ public class SocketManager {
 //            object.put(Global.GROUP_NAME, "adplanMasters");
 //            object.put(Global.ID, 1);
 //            socket.emit("insertGroup", object);
-
-            object = new JSONObject();
-            object.put(Global.GROUP_ID, 1);
-            object.put(Global.ID, "adplan");
-            socket.emit(Global.INSERT_MASTER, object);
-            socket.emit(Global.INSERT_MEMBER, object);
+//
+//            object = new JSONObject();
+//            object.put(Global.GROUP_ID, 1);
+//            object.put(Global.ID, "adplan");
+//            socket.emit(Global.INSERT_MASTER, object);
+//            socket.emit(Global.INSERT_MEMBER, object);
         } catch (Exception e) {
             e.printStackTrace();
         }
