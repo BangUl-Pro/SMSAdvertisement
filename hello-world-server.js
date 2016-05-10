@@ -1112,7 +1112,7 @@ io.sockets.on('connection', function(socket) {
 					});
 				} else {
 					// 일치하는 아이디가 있다면
-					console.log('로그인 성공 = ' + result);
+					console.log('로그인 성공 = ' + JSON.stringify(result));
 					socket.emit('masterLogin', {
 						'code':200,
 						'user':result
