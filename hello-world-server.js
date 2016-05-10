@@ -1517,6 +1517,22 @@ io.sockets.on('connection', function(socket) {
 		}
 	});
 	
+	socket.on('deleteMasters', function(data) {
+		mySqlConnection.query('DELETE FROM ' + MASTER_TABLE, function(err) {
+					if (err) {
+						console.log('deleteMaster err = ' + err);
+						socket.emit('deleteMaster', {
+							'code' : 433
+						});
+					} else {
+						console.log('deleteMaster 성공');
+						socket.emit('deleteMaster', {
+							'code' : 200
+						});
+					}
+				});
+	});
+
 	socket.on('deleteMaster', function(data) {
 		var group_id = data.group_id;
 		var id = data.id;
