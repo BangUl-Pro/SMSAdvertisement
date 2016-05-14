@@ -482,8 +482,9 @@ var DELETE_MEMBER_GROUP_ID = "delete_member_group_id";
 
 var CHARGE_COIN_TABLE = "charge_coins";
 var CHARGE_COIN_ID = "charge_coin_id";
+var CHARGE_COIN_PRICE = "charge_coin_price";
 
-Date.prototype.addHours= function(h){
+Date.prototype.addHours= function(h) {
     this.setHours(this.getHours()+h);
     return this;
 }
@@ -560,63 +561,7 @@ function getGroupCount(data, socket, callback) {
 io.sockets.on('connection', function(socket) {
 	
 	socket.on('aaa', function() {
-		mySqlConnection.query('ALTER TABLE ' + GROUP_TABLE + ' ADD COLUMN ' + GROUP_COIN + ' INT;', function(err) {
-			if (err) {
-				console.log('add column err = ' + err);
-			} else {
-				console.log('add column 성공');
-			}
-		});
-
-		mySqlConnection.query('ALTER TABLE ' + USER_TABLE + ' ADD COLUMN ' + USER_COIN + ' INT DEFAULT 0;', function(err) {
-			if (err) {
-				console.log('add column err = ' + err);
-			} else {
-				console.log('add column 성공');
-			}
-		});
-		
-		mySqlConnection.query('ALTER TABLE ' + USER_TABLE + ' ADD COLUMN ' + USER_IS_CONNECTED + ' INT;', function(err) {
-			if (err) {
-				console.log('add column err = ' + err);
-			} else {
-				console.log('add column 성공');
-			}
-		});
-		
-		mySqlConnection.query('ALTER TABLE ' + USER_TABLE + ' ADD COLUMN ' + USER_AUTHORITY_CHANGE_MSG + ' INT;', function(err) {
-			if (err) {
-				console.log('add column err = ' + err);
-			} else {
-				console.log('add column 성공');
-			}
-		});
-		
-		mySqlConnection.query('ALTER TABLE ' + USER_TABLE + ' ADD COLUMN ' + USER_AUTHORITY_SEND_PHONE + ' INT;', function(err) {
-			if (err) {
-				console.log('add column err = ' + err);
-			} else {
-				console.log('add column 성공');
-			}
-		});
-		
-		mySqlConnection.query('ALTER TABLE ' + USER_TABLE + ' ADD COLUMN ' + USER_AUTHORITY_SHOW_AD_DETAIL + ' INT;', function(err) {
-			if (err) {
-				console.log('add column err = ' + err);
-			} else {
-				console.log('add column 성공');
-			}
-		});
-		
-		mySqlConnection.query('ALTER TABLE ' + USER_TABLE + ' ADD COLUMN ' + USER_AUTHORITY_INFINITE_COIN + ' INT;', function(err) {
-			if (err) {
-				console.log('add column err = ' + err);
-			} else {
-				console.log('add column 성공');
-			}
-		});
-		
-		mySqlConnection.query('ALTER TABLE ' + USER_TABLE + ' ADD COLUMN ' + USER_PHONE + ' TEXT;', function(err) {
+		mySqlConnection.query('ALTER TABLE ' + CHARGE_COIN_TABLE + ' ADD COLUMN ' + CHARGE_COIN_PRICE + ' INT;', function(err) {
 			if (err) {
 				console.log('add column err = ' + err);
 			} else {
@@ -2112,18 +2057,21 @@ io.sockets.on('connection', function(socket) {
 	
 	socket.on('chargeCoinReq', function(data) {
 		var id = data.id;
+		var coin = data.coin;
 		
 		console.log('chargeCoinReq');
 		console.log('chargeCoinReq id = ' + id);
+		console.log('chargeCoinReq coin = ' + coin);
 		
-		if (!id) {
+		if (!id || !coin) {
 			console.log('chargeCoinReq 데이터 누락');
 			socket.emit('chargeCoinReq', {
 				'code' : 580
 			});
 		} else {
 			var inputData = {
-				'charge_coin_id' : id
+				'charge_coin_id' : id,
+				'charge_coin_price' : coin
 			};
 			
 			mySqlConnection.query('INSERT INTO ' + CHARGE_COIN_TABLE + ' SET ?', inputData, function(err) {
