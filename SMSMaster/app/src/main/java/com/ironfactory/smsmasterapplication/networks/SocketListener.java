@@ -1,5 +1,6 @@
 package com.ironfactory.smsmasterapplication.networks;
 
+import com.ironfactory.smsmasterapplication.entities.ChargeCoinEntity;
 import com.ironfactory.smsmasterapplication.entities.DeleteMemberEntity;
 import com.ironfactory.smsmasterapplication.entities.GroupEntity;
 import com.ironfactory.smsmasterapplication.entities.MsgEntity;
@@ -73,7 +74,7 @@ public class SocketListener {
     }
 
     public interface OnGetChargeCoin {
-        void onSuccess(List<String> userList);
+        void onSuccess(List<ChargeCoinEntity> chargeCoinEntities);
         void onException();
     }
 

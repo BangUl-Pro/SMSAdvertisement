@@ -2,7 +2,9 @@ package com.ironfactory.smsmasterapplication.controllers.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.ironfactory.smsmasterapplication.Global;
 import com.ironfactory.smsmasterapplication.R;
 import com.ironfactory.smsmasterapplication.controllers.activities.MsgActivity;
@@ -30,12 +34,21 @@ import java.util.List;
 public class MasterAdapter extends RecyclerView.Adapter {
 
     private static final String TAG = "MasterAdapter";
+    public static final int MASTER = 1;
+    public static final int DETAIL = 2;
 
     private static final int HEADER = 1;
     private static final int CONTENT = 2;
 
     private Context context;
     private GroupEntity groupEntity;
+
+    private List<Integer> yesterdayList;
+    private List<Integer> todayList;
+
+    private int state;
+
+    private int coin = 0;
 
     public MasterAdapter(Context context, GroupEntity groupEntity) {
         this.context = context;
@@ -47,6 +60,31 @@ public class MasterAdapter extends RecyclerView.Adapter {
         if (position == 0)
             return HEADER;
         return CONTENT;
+    }
+
+    public List<Integer> getYesterdayList() {
+        return yesterdayList;
+    }
+
+    public void setYesterdayList(List<Integer> yesterdayList) {
+        this.yesterdayList = yesterdayList;
+    }
+
+    public List<Integer> getTodayList() {
+        return todayList;
+    }
+
+    public void setTodayList(List<Integer> todayList) {
+        this.todayList = todayList;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -78,8 +116,13 @@ public class MasterAdapter extends RecyclerView.Adapter {
             if (userEntity.getName() == null || TextUtils.isEmpty(userEntity.getName())) {
                 viewHolder.parentNameView.setText(userEntity.getId());
             }
-            viewHolder.parentCoinView.setText(String.valueOf(userEntity.getCoin()));
-            viewHolder.parentIsConnectedView.setText((userEntity.isConnected() ? "ON" : "OFF"));
+            if (state == MASTER) {
+                viewHolder.parentCoinView.setText(String.valueOf(userEntity.getCoin()));
+                viewHolder.parentIsConnectedView.setText((userEntity.isConnected() ? "ON" : "OFF"));
+            } else {
+                viewHolder.parentCoinView.setText(String.valueOf(yesterdayList.get(POSITION)));
+                viewHolder.parentIsConnectedView.setText(String.valueOf(todayList.get(POSITION)));
+            }
 
             viewHolder.nameView.setText(userEntity.getName());
             viewHolder.phoneView.setText(userEntity.getPhone());
@@ -171,14 +214,14 @@ public class MasterAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "메세지 변경 버튼 클릭");
-                    if (viewHolder.allowChangeMsgBtn.isChecked()) {
+//                    if (viewHolder.allowChangeMsgBtn.isChecked()) {
                         Intent intent = new Intent(context, MsgActivity.class);
                         intent.putExtra(Global.USER, userEntity);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
-                    } else {
-                        Toast.makeText(context, "문구 수정 허용해주십시오", Toast.LENGTH_SHORT).show();
-                    }
+//                    } else {
+//                        Toast.makeText(context, "문구 수정 허용해주십시오", Toast.LENGTH_SHORT).show();
+//                    }
                 }
             });
 
@@ -186,17 +229,33 @@ public class MasterAdapter extends RecyclerView.Adapter {
             viewHolder.chargeCoinBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    SocketManager.chargeCoinReq(userEntity.getId(), new SocketListener.OnChargeCoinReq() {
-                        @Override
-                        public void onSuccess() {
-                            Log.d(TAG, "코인 수동 충전 요청 성공");
-                        }
+                    MaterialDialog.Builder builder = new MaterialDialog.Builder(context);
+                    builder.title("코인 충전")
+                            .inputType(InputType.TYPE_NUMBER_FLAG_DECIMAL)
+                            .input("충전 금액", "", false, new MaterialDialog.InputCallback() {
+                                @Override
+                                public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+                                    Integer.parseInt(input.toString());
+                                }
+                            }).onPositive(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                    SocketManager.chargeCoinReq(userEntity.getId(), coin, new SocketListener.OnChargeCoinReq() {
+                                        @Override
+                                        public void onSuccess() {
+                                            Log.d(TAG, "코인 수동 충전 요청 성공");
+                                            Toast.makeText(context, "요청 성공", Toast.LENGTH_SHORT).show();
+                                        }
 
-                        @Override
-                        public void onException() {
-                            Log.d(TAG, "코인 수동 충전 요청 실패");
-                        }
-                    });
+                                        @Override
+                                        public void onException() {
+                                            Log.d(TAG, "코인 수동 충전 요청 실패");
+                                            Toast.makeText(context, "요청 실패", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                            }).positiveText("확인")
+                            .show();
                 }
             });
 
@@ -209,9 +268,15 @@ public class MasterAdapter extends RecyclerView.Adapter {
             });
         } else {
             MasterHeaderViewHolder viewHolder = (MasterHeaderViewHolder) holder;
-            viewHolder.nameView.setText("가맹점");
-            viewHolder.coinView.setText("코인");
-            viewHolder.isConnectView.setText("접속");
+            if (state == MASTER) {
+                viewHolder.nameView.setText("가맹점");
+                viewHolder.coinView.setText("코인");
+                viewHolder.isConnectView.setText("접속");
+            } else {
+                viewHolder.nameView.setText("가맹점");
+                viewHolder.coinView.setText("어제");
+                viewHolder.isConnectView.setText("오늘");
+            }
         }
     }
 
@@ -279,5 +344,10 @@ public class MasterAdapter extends RecyclerView.Adapter {
             infiniteCoinContainer = (LinearLayout) itemView.findViewById(R.id.item_master_infinite_coin_container);
             parentContainer = (LinearLayout) itemView.findViewById(R.id.item_master_parent_container);
         }
+    }
+
+    public void setGroupEntity(GroupEntity groupEntity) {
+        this.groupEntity = groupEntity;
+        notifyDataSetChanged();
     }
 }

@@ -6,8 +6,10 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.ironfactory.smsmasterapplication.R;
 import com.ironfactory.smsmasterapplication.entities.UserEntity;
@@ -127,6 +129,57 @@ public class DetailAdapter extends RecyclerView.Adapter {
             nameView = (TextView) itemView.findViewById(R.id.item_member_header_name);
             coinView = (TextView) itemView.findViewById(R.id.item_member_header_coin);
             isConnectView = (TextView) itemView.findViewById(R.id.item_member_header_is_connected);
+        }
+    }
+
+    public class MasterContentViewHolder extends RecyclerView.ViewHolder {
+
+        final TextView parentNameView;
+        final TextView parentCoinView;
+        final TextView parentIsConnectedView;
+
+        final LinearLayout container;
+        final TextView nameView;
+        final TextView phoneView;
+        final TextView accountView;
+        final TextView passwordView;
+        final TextView coinView;
+        final TextView groupView;
+        final ToggleButton allowChangeMsgBtn;
+        final ToggleButton allowShowAdDetailBtn;
+        final ToggleButton allowSendToReceiveNumBtn;
+        final ToggleButton allowInfiniteCoinBtn;
+        final Button changeMsgBtn;
+        final Button chargeCoinBtn;
+
+        final LinearLayout infiniteCoinContainer;
+        final LinearLayout parentContainer;
+
+        boolean isVisible = false;
+
+        public MasterContentViewHolder(View itemView) {
+            super(itemView);
+
+            parentNameView = (TextView) itemView.findViewById(R.id.item_master_parent_name);
+            parentCoinView = (TextView) itemView.findViewById(R.id.item_master_parent_coin);
+            parentIsConnectedView = (TextView) itemView.findViewById(R.id.item_master_parent_is_connected);
+
+            container = (LinearLayout) itemView.findViewById(R.id.item_master_container);
+            nameView = (TextView) itemView.findViewById(R.id.item_master_name);
+            phoneView = (TextView) itemView.findViewById(R.id.item_master_phone);
+            accountView = (TextView) itemView.findViewById(R.id.item_master_account);
+            passwordView = (TextView) itemView.findViewById(R.id.item_master_password);
+            coinView = (TextView) itemView.findViewById(R.id.item_master_coin);
+            groupView = (TextView) itemView.findViewById(R.id.item_master_group);
+            allowChangeMsgBtn = (ToggleButton) itemView.findViewById(R.id.item_master_allow_change_msg);
+            allowShowAdDetailBtn = (ToggleButton) itemView.findViewById(R.id.item_master_allow_show_ad_detail);
+            allowSendToReceiveNumBtn = (ToggleButton) itemView.findViewById(R.id.item_master_allow_send_to_receive_num);
+            allowInfiniteCoinBtn = (ToggleButton) itemView.findViewById(R.id.item_master_allow_infinite_coin);
+            changeMsgBtn = (Button) itemView.findViewById(R.id.item_master_change_msg);
+            chargeCoinBtn = (Button) itemView.findViewById(R.id.item_master_charge_coin);
+
+            infiniteCoinContainer = (LinearLayout) itemView.findViewById(R.id.item_master_infinite_coin_container);
+            parentContainer = (LinearLayout) itemView.findViewById(R.id.item_master_parent_container);
         }
     }
 

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ironfactory.smsmasterapplication.R;
+import com.ironfactory.smsmasterapplication.entities.ChargeCoinEntity;
 import com.ironfactory.smsmasterapplication.networks.SocketListener;
 import com.ironfactory.smsmasterapplication.networks.SocketManager;
 
@@ -25,9 +26,9 @@ public class ChargeCoinReqAdapter extends RecyclerView.Adapter<ChargeCoinReqAdap
 
     private Context context;
 
-    private List<String> userList;
+    private List<ChargeCoinEntity> userList;
 
-    public ChargeCoinReqAdapter(Context context, List<String> userList) {
+    public ChargeCoinReqAdapter(Context context, List<ChargeCoinEntity> userList) {
         this.context = context;
         this.userList = userList;
     }
@@ -40,13 +41,13 @@ public class ChargeCoinReqAdapter extends RecyclerView.Adapter<ChargeCoinReqAdap
 
     @Override
     public void onBindViewHolder(ChargeCoinReqViewHolder holder, final int position) {
-        holder.idView.setText(userList.get(position));
+        holder.idView.setText(userList.get(position).getId());
         holder.chargeBtn.setText("충전");
 
         holder.chargeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SocketManager.chargeCoin(userList.get(position), new SocketListener.OnChargeCoin() {
+                SocketManager.chargeCoin(userList.get(position).getId(), userList.get(position).getPrice(), new SocketListener.OnChargeCoin() {
                     @Override
                     public void onSuccess() {
                         Log.d(TAG, "코인 추가 성공");
@@ -66,7 +67,7 @@ public class ChargeCoinReqAdapter extends RecyclerView.Adapter<ChargeCoinReqAdap
         holder.cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SocketManager.cancelChargeCoin(userList.get(position), new SocketListener.OnCancelChargeCoin() {
+                SocketManager.cancelChargeCoin(userList.get(position).getId(), new SocketListener.OnCancelChargeCoin() {
                     @Override
                     public void onSuccess() {
                         Log.d(TAG, "코인 추가 취소 성공");
@@ -89,7 +90,7 @@ public class ChargeCoinReqAdapter extends RecyclerView.Adapter<ChargeCoinReqAdap
         return userList.size();
     }
 
-    public void setUserList(List<String> userList) {
+    public void setUserList(List<ChargeCoinEntity> userList) {
         this.userList = userList;
         notifyDataSetChanged();
     }

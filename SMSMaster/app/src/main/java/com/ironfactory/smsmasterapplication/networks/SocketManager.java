@@ -8,6 +8,7 @@ import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.ironfactory.smsmasterapplication.Global;
+import com.ironfactory.smsmasterapplication.entities.ChargeCoinEntity;
 import com.ironfactory.smsmasterapplication.entities.DeleteMemberEntity;
 import com.ironfactory.smsmasterapplication.entities.GroupEntity;
 import com.ironfactory.smsmasterapplication.entities.MsgEntity;
@@ -47,6 +48,7 @@ public class SocketManager {
 
         try {
             JSONObject object = new JSONObject();
+            socket.emit("aaa", "");
 //            socket.emit("createA", "");
 //            object.put(Global.ID, 1);
 //            object.put("id", "adplan");
@@ -1113,12 +1115,13 @@ public class SocketManager {
         }
     }
 
-    public static void chargeCoinReq(String userId, final SocketListener.OnChargeCoinReq onChargeCoinReq) {
+    public static void chargeCoinReq(String userId, int coin, final SocketListener.OnChargeCoinReq onChargeCoinReq) {
         checkSocket();
         Log.d(TAG, "chargeCoinReq");
         try {
             JSONObject object = new JSONObject();
             object.put(Global.ID, userId);
+            object.put(Global.COIN, coin);
             socket.emit(Global.CHARGE_COIN_REQ, object);
             socket.once(Global.CHARGE_COIN_REQ, new Emitter.Listener() {
                 @Override
@@ -1146,12 +1149,13 @@ public class SocketManager {
         }
     }
 
-    public static void chargeCoin(String userId, final SocketListener.OnChargeCoin onChargeCoin) {
+    public static void chargeCoin(String userId, int coin, final SocketListener.OnChargeCoin onChargeCoin) {
         checkSocket();
         Log.d(TAG, "chargeCoin");
         try {
             JSONObject object = new JSONObject();
             object.put(Global.ID, userId);
+            object.put(Global.COIN, coin);
             socket.emit(Global.CHARGE_COIN, object);
             socket.once(Global.CHARGE_COIN, new Emitter.Listener() {
                 @Override
@@ -1224,10 +1228,10 @@ public class SocketManager {
                     final int code = object.getInt(Global.CODE);
                     if (code == Global.SUCCESS) {
                         JSONArray userArray = object.getJSONArray(Global.USER);
-                        final List<String> userList = new ArrayList<>();
+                        final List<ChargeCoinEntity> userList = new ArrayList<>();
                         for (int i = 0; i < userArray.length(); i++) {
                             JSONObject userObject = userArray.getJSONObject(i);
-                            userList.add(userObject.getString(Global.CHARGE_COIN_ID));
+                            userList.add(new ChargeCoinEntity(userObject));
                         }
                         handler.post(new Runnable() {
                             @Override
