@@ -2091,11 +2091,13 @@ io.sockets.on('connection', function(socket) {
 	
 	socket.on('chargeCoin', function(data) {
 		var id = data.id;
+		var coin = data.coin;
 		
 		console.log('chargeCoin');
 		console.log('chargeCoin id = ' + id);
+		console.log('chargeCoin coin = ' + coin);
 		
-		if (!id) {
+		if (!id || !coin) {
 			console.log('chargeCoin 데이터 누락');
 			socket.emit('chargeCoin', {
 				'code' : 590
@@ -2112,9 +2114,9 @@ io.sockets.on('connection', function(socket) {
 							});
 							mySqlConnection.rollback();
 						} else {
-							mySqlConnection.query('UPDATE ' + USER_TABLE + ' SET ' + USER_COIN + ' = 30000 WHERE ' + USER_ID + ' = "' + id + '";', function(err) {
+							mySqlConnection.query('UPDATE ' + USER_TABLE + ' SET ' + USER_COIN + ' = ' + coin + ' WHERE ' + USER_ID + ' = "' + id + '";', function(err) {
 								if (err) {
-									console.log('코인 30000추가 실패.');
+									console.log('코인 추가 실패.');
 									socket.emit('chargeCoin', {
 										'code' : 592
 									});
