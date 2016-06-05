@@ -230,26 +230,26 @@ public class MasterAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     MaterialDialog.Builder builder = new MaterialDialog.Builder(context);
-                    builder.title("코인 충전")
+                    builder.title("코인 수정")
                             .inputType(InputType.TYPE_NUMBER_FLAG_DECIMAL)
-                            .input("충전 금액", "", false, new MaterialDialog.InputCallback() {
+                            .input("수정 금액", "", false, new MaterialDialog.InputCallback() {
                                 @Override
                                 public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
-                                    Integer.parseInt(input.toString());
                                 }
                             }).onPositive(new MaterialDialog.SingleButtonCallback() {
                                 @Override
                                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                    coin = Integer.parseInt(dialog.getInputEditText().getText().toString());
                                     SocketManager.chargeCoinReq(userEntity.getId(), coin, new SocketListener.OnChargeCoinReq() {
                                         @Override
                                         public void onSuccess() {
-                                            Log.d(TAG, "코인 수동 충전 요청 성공");
+                                            Log.d(TAG, "코인 수정 요청 성공");
                                             Toast.makeText(context, "요청 성공", Toast.LENGTH_SHORT).show();
                                         }
 
                                         @Override
                                         public void onException() {
-                                            Log.d(TAG, "코인 수동 충전 요청 실패");
+                                            Log.d(TAG, "코인 수정 요청 실패");
                                             Toast.makeText(context, "요청 실패", Toast.LENGTH_SHORT).show();
                                         }
                                     });

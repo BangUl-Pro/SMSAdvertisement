@@ -187,7 +187,7 @@
                     android:id="@+id/item_master_charge_coin"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="충전"/>
+                    android:text="수정"/>
 
             </LinearLayout>
 

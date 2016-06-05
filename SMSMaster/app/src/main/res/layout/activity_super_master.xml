@@ -55,7 +55,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="코인추가요청 목록"/>
+        android:text="코인수정요청 목록"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/activity_master_setting_charge_coin"

@@ -1119,6 +1119,7 @@ public class SocketManager {
         checkSocket();
         Log.d(TAG, "chargeCoinReq");
         try {
+            Log.d(TAG, "coin = " + coin);
             JSONObject object = new JSONObject();
             object.put(Global.ID, userId);
             object.put(Global.COIN, coin);
