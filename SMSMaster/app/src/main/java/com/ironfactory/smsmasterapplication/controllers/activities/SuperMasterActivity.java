@@ -17,6 +17,7 @@ import com.ironfactory.smsmasterapplication.controllers.adapters.ChargeCoinReqAd
 import com.ironfactory.smsmasterapplication.controllers.adapters.DeleteMemberReqAdapter;
 import com.ironfactory.smsmasterapplication.controllers.adapters.DeleteUserReqAdapter;
 import com.ironfactory.smsmasterapplication.controllers.adapters.TopMasterAdapter;
+import com.ironfactory.smsmasterapplication.entities.ChargeCoinEntity;
 import com.ironfactory.smsmasterapplication.entities.DeleteMemberEntity;
 import com.ironfactory.smsmasterapplication.entities.GroupEntity;
 import com.ironfactory.smsmasterapplication.networks.SocketListener;
@@ -42,7 +43,7 @@ public class SuperMasterActivity extends AppCompatActivity {
 
     private GroupEntity groupEntity;
     private List<String> deleteUserReqList;
-    private List<String> chargeCoinReqList;
+    private List<ChargeCoinEntity> chargeCoinReqList;
     private List<DeleteMemberEntity> deleteMemberEntities;
 
     @Override
@@ -144,7 +145,7 @@ public class SuperMasterActivity extends AppCompatActivity {
 
         SocketManager.getChargeCoinList(new SocketListener.OnGetChargeCoin() {
             @Override
-            public void onSuccess(List<String> userList) {
+            public void onSuccess(List<ChargeCoinEntity> userList) {
                 Log.d(TAG, "코인 추가 요청 리스트 로드 성공");
                 chargeCoinReqList = userList;
                 chargeCoinReqAdapter.setUserList(chargeCoinReqList);

@@ -57,6 +57,7 @@ public class Global {
     public static final String GROUP_NAME = "group_name";
     public static final String DAY = "day";
     public static final String COUNT = "count";
+    public static final String COIN = "coin";
     public static final String IS_ABLE = "isAble";
     public static final String MSG = "msg";
     public static final String MASTER = "master";

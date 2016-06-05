@@ -11,8 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +39,6 @@ public class SettingFragment extends Fragment {
     private TextView accountView;
     private TextView exceptPhoneView;
     private TextView logoutView;
-    private CheckBox checkBox;
 
     private UserEntity userEntity;
     private MsgAdapter adapter;
@@ -86,7 +83,6 @@ public class SettingFragment extends Fragment {
         accountView = (TextView) rootView.findViewById(R.id.fragment_setting_account);
         exceptPhoneView = (TextView) rootView.findViewById(R.id.fragment_setting_except_phone_list);
         logoutView = (TextView) rootView.findViewById(R.id.fragment_setting_logout);
-        checkBox = (CheckBox) rootView.findViewById(R.id.fragment_setting_check);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.fragment_setting_recycler);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
@@ -96,7 +92,6 @@ public class SettingFragment extends Fragment {
         nameView.setText(userEntity.getName());
         phoneView.setText(userEntity.getPhone());
         accountView.setText(userEntity.getId());
-        checkBox.setChecked(userEntity.isAbleChangeMsg());
 
         insertPastMsg();
         setListener();
@@ -160,27 +155,8 @@ public class SettingFragment extends Fragment {
                     intent.putExtra(Global.USER, userEntity.getId());
                     getActivity().startActivity(intent);
                 } else {
-                    Toast.makeText(getActivity(), "문구 수정 허용을 체크해주십시오", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "관리자에게 문구 수정 허용을 요청하십시오", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-                int isAble = (isChecked ? 1 : 2);
-                SocketManager.setChangeMsg(userEntity.getId(), isAble, new SocketListener.OnSetChangeMsg() {
-                    @Override
-                    public void onSuccess() {
-                        Log.d(TAG, "메세지 수정 세팅 변경 성공");
-                        userEntity.setAbleChangeMsg(isChecked);
-                    }
-
-                    @Override
-                    public void onException() {
-                        Log.d(TAG, "메세지 수정 세팅 변경 실패");
-                    }
-                });
             }
         });
     }

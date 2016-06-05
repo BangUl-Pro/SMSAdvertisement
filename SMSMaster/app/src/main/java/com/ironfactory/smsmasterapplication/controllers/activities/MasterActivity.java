@@ -24,7 +24,6 @@ import android.widget.ToggleButton;
 
 import com.ironfactory.smsmasterapplication.Global;
 import com.ironfactory.smsmasterapplication.R;
-import com.ironfactory.smsmasterapplication.controllers.adapters.DetailAdapter;
 import com.ironfactory.smsmasterapplication.controllers.adapters.MasterAdapter;
 import com.ironfactory.smsmasterapplication.entities.GroupEntity;
 import com.ironfactory.smsmasterapplication.entities.UserEntity;
@@ -41,7 +40,6 @@ public class MasterActivity extends AppCompatActivity implements View.OnClickLis
 
     private TextView detailView;
     private RecyclerView masterRecyclerView;
-    private RecyclerView detailRecyclerView;
 
     private LinearLayout settingContainer;
     private ToggleButton allowChangeMsgBtn;
@@ -52,7 +50,6 @@ public class MasterActivity extends AppCompatActivity implements View.OnClickLis
     private EditText maxCoinInput;
 
     private MasterAdapter masterAdapter;
-    private DetailAdapter detailAdapter;
 
     private GroupEntity groupEntity;
 
@@ -93,8 +90,9 @@ public class MasterActivity extends AppCompatActivity implements View.OnClickLis
                 SocketManager.getUserCount(groupEntity.getMembers().get(position).getId(), date, position, onGetUserYesterdayCount);
             } else {
                 // 전부 다 받아왔으면
-                detailAdapter.setMsgYesterdayList(yesterdayList);
-                detailAdapter.setMsgTodayList(todayList);
+                masterAdapter.setYesterdayList(yesterdayList);
+                masterAdapter.setTodayList(todayList);
+                masterRecyclerView.setAdapter(masterAdapter);
             }
         }
 
@@ -126,7 +124,6 @@ public class MasterActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         masterRecyclerView = (RecyclerView) findViewById(R.id.activity_master_recycler);
-        detailRecyclerView = (RecyclerView) findViewById(R.id.activity_master_detail_recycler);
         detailView = (TextView) findViewById(R.id.activity_master_detail);
         infiniteCoinCheckBox = (CheckBox) findViewById(R.id.activity_master_infinite_coin);
         maxCoinInput = (EditText) findViewById(R.id.activity_master_max_coin);
@@ -246,17 +243,12 @@ public class MasterActivity extends AppCompatActivity implements View.OnClickLis
 
     private void setRecyclerView() {
         masterRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-        detailRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-        masterAdapter = new MasterAdapter(getApplicationContext(), groupEntity);
-        masterRecyclerView.setAdapter(masterAdapter);
+        masterAdapter = new MasterAdapter(this, groupEntity);
 
         Date date = new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 24);
         if (groupEntity.getMembers().size() > 0) {
             SocketManager.getUserCount(groupEntity.getMembers().get(0).getId(), date, 0, onGetUserYesterdayCount);
         }
-
-        detailAdapter = new DetailAdapter(getApplicationContext(), groupEntity.getMembers(), todayList, yesterdayList);
-        detailRecyclerView.setAdapter(detailAdapter);
     }
 
     @Override
@@ -327,6 +319,10 @@ public class MasterActivity extends AppCompatActivity implements View.OnClickLis
                         Log.d(TAG, "광고상세보기 전송 세팅 실패");
                     }
                 });
+
+                user.setAbleChangeMsg(isAbleChangeMsg == UserEntity.ABLE);
+                user.setAbleSendPhone(isAbleSend == UserEntity.ABLE);
+                user.setAbleShowAdDetail(isAbleShowAdDetail == UserEntity.ABLE);
             }
 
             int num = 0;
@@ -347,14 +343,12 @@ public class MasterActivity extends AppCompatActivity implements View.OnClickLis
                     }
                 });
             }
+            masterAdapter.setGroupEntity(groupEntity);
         } else if (v.equals(detailView)) {
-            if (detailRecyclerView.getVisibility() == View.VISIBLE) {
-                detailRecyclerView.setVisibility(View.GONE);
-                masterRecyclerView.setVisibility(View.VISIBLE);
-            } else {
-                detailRecyclerView.setVisibility(View.VISIBLE);
-                masterRecyclerView.setVisibility(View.GONE);
-            }
+            if (masterAdapter.getState() == MasterAdapter.MASTER)
+                masterAdapter.setState(MasterAdapter.DETAIL);
+            else
+                masterAdapter.setState(MasterAdapter.MASTER);
         }
     }
 }
