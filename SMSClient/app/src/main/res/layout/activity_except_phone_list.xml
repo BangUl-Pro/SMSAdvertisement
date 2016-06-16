@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.ironfactory.smsapplication.controllers.activities.ExceptPhoneListActivity">
+    tools:context="com.adplan.smsapplication.controllers.activities.ExceptPhoneListActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/activity_except_phone_list_toolbar"

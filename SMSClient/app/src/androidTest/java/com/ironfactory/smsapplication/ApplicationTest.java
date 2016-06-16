@@ -1,4 +1,4 @@
-package com.ironfactory.smsapplication;
+package com.adplan.smsapplication;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

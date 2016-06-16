@@ -6,11 +6,11 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.ironfactory.smsapplication"
+        applicationId "com.adplan.smsapplication"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 7
-        versionName "1.6"
+        versionCode 1
+        versionName "1.1"
     }
     buildTypes {
         release {

@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/margin_normal"
-    tools:context="com.ironfactory.smsapplication.controllers.activities.TabActivity$PlaceholderFragment">
+    tools:context="com.adplan.smsapplication.controllers.activities.TabActivity$PlaceholderFragment">
 
     <TextView
         android:id="@+id/section_label"

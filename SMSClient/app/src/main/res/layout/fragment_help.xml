@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.ironfactory.smsapplication.controllers.fragments.HelpFragment">
+    tools:context="com.adplan.smsapplication.controllers.fragments.HelpFragment">
 
     <ImageView
         android:id="@+id/fragment_help_image"

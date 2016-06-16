@@ -7,7 +7,7 @@
     android:paddingTop="@dimen/margin_normal"
     android:paddingBottom="@dimen/margin_normal"
     android:gravity="center"
-    tools:context=".controllers.activities.SignUpActivity">
+    tools:context="com.adplan.smsapplication.controllers.activities.SignUpActivity">
 
 
     <ScrollView
